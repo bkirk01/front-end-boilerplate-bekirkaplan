@@ -1,0 +1,44 @@
+/* Grid Layout */
+.grid-container {
+  @apply grid gap-6 mx-auto container;
+  /* Mobile: 1 column */
+  grid-template-columns: minmax(300px, 1fr);
+}
+
+/* Responsive grid breakpoints */
+@screen sm {
+  .grid-container {
+    /* Tablet: 2 columns */
+    grid-template-columns: repeat(3, minmax(180px, 1fr));
+  }
+}
+
+@screen lg {
+  .grid-container {
+    /* Desktop: 3 columns */
+    grid-template-columns: repeat(4, minmax(220px, 1fr));
+  }
+}
+
+/* Animation */
+.page-enter-active,
+.page-leave-active {
+  @apply transition-all duration-500 ease-in-out;
+}
+
+.page-enter-from {
+  @apply opacity-0 translate-y-5;
+}
+
+.page-leave-to {
+  @apply opacity-0 -translate-y-5;
+}
+
+/* Content Container */
+.content-wrapper {
+  @apply relative z-10;
+}
+
+.page-content {
+  @apply min-h-[50vh];
+}

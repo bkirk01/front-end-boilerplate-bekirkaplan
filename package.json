@@ -1,0 +1,45 @@
+{
+  "name": "nuxt-app",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "HOST=0.0.0.0 nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "lint": "eslint --ext .js,.ts,.vue .",
+    "lint:fix": "eslint --ext .js,.ts,.vue . --fix",
+    "format": "prettier --write \"**/*.{js,ts,vue,json,md}\"",
+    "format:check": "prettier --check \"**/*.{js,ts,vue,json,md}\"",
+    "prepare": "husky install"
+  },
+  "dependencies": {
+    "@nuxt/ui": "^2.14.2",
+    "@pinia/nuxt": "^0.5.1",
+    "@vite-pwa/nuxt": "^0.5.0",
+    "axios": "^1.7.9",
+    "axios-cache-interceptor": "^1.6.2",
+    "nuxt": "^3.13.0",
+    "pinia": "^2.1.7",
+    "pokenode-ts": "^1.20.0",
+    "prettier": "^3.5.1",
+    "rickmortyapi": "^2.3.0"
+  },
+  "devDependencies": {
+    "@nuxtjs/eslint-config-typescript": "^12.1.0",
+    "husky": "^8.0.0",
+    "lint-staged": "^15.4.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts,vue}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  }
+}

@@ -1,0 +1,74 @@
+/* Hero Section */
+.hero-container {
+  @apply relative z-10 space-y-8;
+}
+
+.hero-title {
+  @apply text-4xl font-bold text-gray-800;
+}
+
+.hero-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 gap-6;
+}
+
+/* Card Styles */
+.feature-card {
+  @apply block;
+}
+
+.card-wrapper {
+  @apply h-full rounded-xl overflow-hidden shadow-sm hover:shadow-lg transform hover:scale-[1.02] transition-all duration-300 backdrop-blur-md bg-white/30 border border-white/30;
+}
+
+.card-header {
+  @apply relative;
+}
+
+.header-content {
+  @apply absolute inset-0 backdrop-blur-sm p-6;
+}
+
+.header-title {
+  @apply text-2xl font-semibold text-white;
+}
+
+.header-image {
+  @apply absolute bottom-0 right-0 w-32 h-32 transform translate-y-1/2 rounded-full border-4 border-white shadow-lg;
+}
+
+.card-content {
+  @apply p-6 pt-20;
+}
+
+.card-description {
+  @apply text-gray-600;
+}
+
+.card-link {
+  @apply mt-4 flex items-center text-blue-600 font-medium transition-transform;
+}
+
+.feature-card:hover .card-link {
+  @apply translate-x-1;
+}
+
+.link-icon {
+  @apply w-5 h-5 ml-2 transition-transform;
+}
+
+.feature-card:hover .link-icon {
+  @apply translate-x-1;
+}
+
+/* Variant Styles */
+.rick-and-morty-gradient {
+  @apply bg-gradient-to-br from-blue-500/80 to-blue-600/80;
+}
+
+.pokemon-gradient {
+  @apply bg-gradient-to-br from-red-500/80 to-red-600/80;
+}
+
+.pokemon-link {
+  @apply text-red-600;
+}
