@@ -6,8 +6,8 @@
 
 <script setup lang="ts">
 const props = defineProps<{
-  from: string;
-  to: string;
+  from?: string;
+  to?: string;
   opacity?: string;
 }>();
 

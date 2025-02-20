@@ -9,7 +9,7 @@
 
     <!-- Content -->
     <div class="detail-container">
-      <cards-character-detail
+      <CardsCharacterDetail
         :data="itemData"
         :loading="loading"
         :error="
@@ -30,6 +30,7 @@
 import { mapPokemonToDetailItem } from '~/mappers/pokemon';
 import { mapCharacterToDetailItem } from '~/mappers/rickAndMorty';
 import type { DetailItem } from '~/types/common';
+import { CardsCharacterDetail } from '#components';
 import '~/assets/css/views/detail.css';
 
 const route = useRoute();
@@ -54,9 +55,4 @@ const itemData = computed<DetailItem | undefined>(() => {
     ? mapPokemonToDetailItem(response.value)
     : mapCharacterToDetailItem(response.value);
 });
-
-// Update route params with the name for breadcrumb
-if (response.value) {
-  route.params.name = response.value.name;
-}
 </script>

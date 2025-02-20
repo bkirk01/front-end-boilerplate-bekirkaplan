@@ -15,7 +15,9 @@ defineProps<{
 
 <style scoped>
 .base-card {
-  @apply rounded-xl overflow-hidden shadow-sm hover:shadow-lg transform hover:scale-[1.02] transition-all duration-300 backdrop-blur-md border border-white/30;
+  @apply rounded-xl overflow-hidden shadow-sm 
+  hover:shadow-lg transform hover:scale-[1.02] 
+  transition-all duration-300 backdrop-blur-md;
 }
 
 .card-link {

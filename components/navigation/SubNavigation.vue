@@ -73,7 +73,7 @@ const view = computed(() => {
 
 // Methods
 function toggleView() {
-  if (route.path.startsWith('/pokemon')) {
+  if (viewStore.selectedView === ESelectedView.POKEMON) {
     viewStore.toggleView('pokemon');
   } else {
     viewStore.toggleView('rickAndMorty');
@@ -83,7 +83,7 @@ function toggleView() {
 
 <style scoped>
 .sub-navigation {
-  @apply fixed top-16 left-0 right-0 border-b border-gray-200/50 backdrop-blur-md bg-white/25 z-30;
+  @apply sticky top-0 border-b border-gray-200/50 backdrop-blur-md bg-white/25 z-30;
 }
 
 .navigation-wrapper {

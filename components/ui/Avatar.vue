@@ -1,90 +1,71 @@
+<script setup lang="ts">
+import { ref, computed } from "vue";
+import confPokemonApp from "~/config/pokemonConfig";
+import confRickMortyApp from "~/config/rickMortyConfig";
+
+const props = defineProps<{
+  image: string;
+  alt: string;
+  size?: "sm" | "md" | "lg";
+  className?: string;
+  imageClass?: string;
+  fallbackImage?: string; // New prop for fallback image
+}>();
+const viewStore = useViewStore();
+
+const currentImage = ref(props.image); // Dynamic image source
+
+if(currentImage.value === null) {
+  handleImageError();
+}
+
+const sizeClasses = computed(() => {
+  switch (props.size) {
+    case "sm":
+      return "avatar-sm";
+    case "md":
+      return "avatar-md";
+    case "lg":
+      return "avatar-lg";
+    default:
+      return "avatar-md";
+  }
+});
+
+// ✅ Handle image load error by switching to fallback image
+function handleImageError() {
+  if (currentImage.value !== confRickMortyApp.loadingImage && currentImage.value !== confPokemonApp.loadingImage) {
+    currentImage.value =
+      viewStore.selectedView === ESelectedView.RICKMORTY
+        ? confRickMortyApp.loadingImage
+        : confPokemonApp.loadingImage;
+  } else {
+    console.error('Fallback image failed to load.');
+  }
+}
+
+</script>
+
 <template>
-  <div :class="['avatar', isPokemon ? 'pokemon-avatar' : '', sizeClasses, className]">
-    <div v-show="loading" class="loading-container">
-      <img :src="loadingImage" alt="Loading..." class="loading-animation" />
-    </div>
+  <div :class="['avatar', sizeClasses, className]">
     <img
-      :src="image"
+      :src="currentImage"
       :alt="alt"
       loading="lazy"
       decoding="async"
-      :class="[
-        'avatar-image',
-        isPokemon ? 'pokemon-image' : '',
-        { 'opacity-0': loading },
-        imageClass,
-      ]"
-      @load="handleImageLoad"
+      :class="['avatar-image', imageClass]"
       @error="handleImageError"
     />
   </div>
 </template>
 
-<script setup lang="ts">
-const route = useRoute();
-
-const props = defineProps<{
-  image: string;
-  alt: string;
-  size?: 'sm' | 'md' | 'lg';
-  className?: string;
-  imageClass?: string;
-}>();
-
-const loading = ref(true);
-const isPokemon = computed(() => route.path.includes('/pokemon'));
-
-// Import loading animations
-import pikachuLoading from '~/assets/animations/loading-animation-pikacu.gif';
-import rickLoading from '~/assets/animations/loading-animation-rick.gif';
-
-const loadingImage = computed(() => (isPokemon.value ? pikachuLoading : rickLoading));
-
-const sizeClasses = computed(() => {
-  switch (props.size) {
-    case 'sm':
-      return 'avatar-sm';
-    case 'md':
-      return 'avatar-md';
-    case 'lg':
-      return 'avatar-lg';
-    default:
-      return 'avatar-md';
-  }
-});
-
-function handleImageLoad() {
-  loading.value = false;
-}
-
-function handleImageError() {
-  loading.value = false;
-}
-</script>
-
 <style scoped>
 .avatar {
-  @apply relative rounded-full overflow-hidden transition-transform duration-300;
-}
-
-.pokemon-avatar {
-  @apply bg-white p-1 shadow-lg;
+  @apply flex items-center rounded-full overflow-hidden transition-transform duration-300 bg-white p-1 shadow-lg;
 }
 
 .avatar-image {
-  @apply w-full h-full transition-all duration-500 hover:scale-110 rounded-full;
-}
-
-.pokemon-image {
-  @apply p-2;
-}
-
-.loading-container {
-  @apply absolute inset-0 flex items-center justify-center bg-gray-100/80 backdrop-blur-sm rounded-full;
-}
-
-.loading-animation {
-  @apply w-3/4 h-3/4 object-contain;
+  @apply w-full transition-all duration-500 hover:scale-110 rounded-full p-2;
 }
 
 /* Mobile sizes */

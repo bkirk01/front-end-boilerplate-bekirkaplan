@@ -2,7 +2,7 @@
   <span
     :class="[
       'inline-flex items-center rounded-lg px-3 py-1 text-xs font-medium ring-1 ring-inset',
-      colors[color],
+      COLORS[color],
       className,
     ]"
   >
@@ -11,7 +11,7 @@
 </template>
 
 <script setup lang="ts">
-const colors = {
+const COLORS = {
   gray: 'bg-gray-50/80 text-gray-800 ring-gray-500/20',
   red: 'bg-red-50/80 text-red-800 ring-red-500/20',
   yellow: 'bg-yellow-50/80 text-yellow-800 ring-yellow-500/20',
@@ -30,10 +30,17 @@ const colors = {
   zinc: 'bg-zinc-50/80 text-zinc-800 ring-zinc-500/20',
   stone: 'bg-stone-50/80 text-stone-800 ring-stone-500/20',
   fuchsia: 'bg-fuchsia-50/80 text-fuchsia-800 ring-fuchsia-500/20',
+  default: 'bg-gray-200/80 text-gray-800 ring-gray-300/40',
 };
 
-defineProps<{
-  color?: keyof typeof colors;
-  className?: string;
-}>();
+withDefaults(
+  defineProps<{
+    color: string;
+    className?: string;
+  }>(),
+  {
+    color: 'default', // Default color
+    className: '',    // Default className
+  }
+);
 </script>

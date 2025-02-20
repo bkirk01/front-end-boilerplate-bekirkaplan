@@ -1,3 +1,48 @@
+<script setup lang="ts">
+import { mapCharacterToBaseItem } from "~/mappers/rickAndMorty";
+import type { BaseItem } from "~/types/common";
+
+const { getCharacters, loading } = useRickAndMortyApi();
+const viewStore = useViewStore();
+const view = computed({
+  get: () => viewStore.rickAndMortyView,
+  set: () => viewStore.toggleView("rickAndMorty"),
+});
+viewStore.setPage(ESelectedView.RICKMORTY);
+
+const page = ref(1);
+const isAnimating = ref(false);
+
+const { data: response } = await useAsyncData(() => getCharacters(page.value), {
+  watch: [page],
+});
+
+const characters = computed<BaseItem[]>(() => {
+  return (response.value?.data?.results || []).map(mapCharacterToBaseItem);
+});
+
+const info = computed(() => response.value?.data?.info || {});
+
+// Animation control functions
+function beforeLeave() {
+  isAnimating.value = true;
+}
+
+function afterLeave() {
+  isAnimating.value = false;
+}
+
+// Scroll to top when page changes
+watch(page, () => {
+  if (!isAnimating.value) {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }
+});
+</script>
+
 <template>
   <div>
     <!-- Wallpaper Background -->
@@ -7,7 +52,12 @@
     <ui-loading-overlay v-if="loading" />
 
     <!-- Content -->
-    <Transition mode="out-in" name="page" @before-leave="beforeLeave" @after-leave="afterLeave">
+    <Transition
+      mode="out-in"
+      name="page"
+      @before-leave="beforeLeave"
+      @after-leave="afterLeave"
+    >
       <div :key="`page-${page}`" class="page-content">
         <div :class="[view === 'grid' ? 'grid-container' : 'list-container']">
           <template v-if="view === 'grid'">
@@ -39,51 +89,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
-import { mapCharacterToBaseItem } from '~/mappers/rickAndMorty';
-import type { BaseItem } from '~/types/common';
-
-const { getCharacters, loading } = useRickAndMortyApi();
-const viewStore = useViewStore();
-const view = computed({
-  get: () => viewStore.rickAndMortyView,
-  set: () => viewStore.toggleView('rickAndMorty'),
-});
-
-const page = ref(1);
-const isAnimating = ref(false);
-
-const { data: response } = await useAsyncData(() => getCharacters(page.value), {
-  watch: [page],
-});
-
-const characters = computed<BaseItem[]>(() => {
-  return (response.value?.data?.results || []).map(mapCharacterToBaseItem);
-});
-
-const info = computed(() => response.value?.data?.info || {});
-
-// Animation control functions
-function beforeLeave() {
-  isAnimating.value = true;
-}
-
-function afterLeave() {
-  isAnimating.value = false;
-}
-
-// Scroll to top when page changes
-watch(page, () => {
-  if (!isAnimating.value) {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
-  }
-});
-</script>
-
 <style>
-@import '~/assets/css/views/grid.css';
-@import '~/assets/css/views/list.css';
+@import "~/assets/css/views/grid.css";
+@import "~/assets/css/views/list.css";
 </style>

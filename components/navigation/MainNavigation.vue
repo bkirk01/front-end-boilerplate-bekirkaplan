@@ -32,7 +32,7 @@ const route = useRoute();
 
 <style scoped>
 .nav-container {
-  @apply fixed top-0 left-0 right-0 border-b border-gray-200/50 backdrop-blur-xl bg-white/50 z-50;
+  @apply relative border-b border-gray-200/50 backdrop-blur-xl bg-white/50 z-50;
 }
 
 .nav-content {

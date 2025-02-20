@@ -19,7 +19,7 @@ export const usePokemonApi = () => {
    * @param offset Pagination offset.
    * @returns List of Pokémon resources or null on error.
    */
-  const getPokemons = async (limit = 20, offset = 0): Promise<void> => {
+  const getPokemons = async (limit = 20, offset = 0): Promise<boolean> => {
     if (loading.value) refMappedPokemons.value = [];
     loading.value = true;
     error.value = null;
@@ -31,8 +31,10 @@ export const usePokemonApi = () => {
         pokemons.results.map(pokemon => mapPokemonToBaseItem(pokemon))
       );
       refMappedPokemons.value = mappedPokemons;
+      return true;
     } catch (err) {
       error.value = `Failed to fetch Pokémon list: ${String(err)}`;
+      return false;
     } finally {
       loading.value = false;
     }
@@ -57,6 +59,8 @@ export const usePokemonApi = () => {
       loading.value = false;
     }
   };
+
+  getPokemons();
 
   return {
     loading,

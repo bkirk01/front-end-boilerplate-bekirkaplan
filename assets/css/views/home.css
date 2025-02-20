@@ -45,7 +45,7 @@
 }
 
 .card-link {
-  @apply mt-4 flex items-center text-blue-600 font-medium transition-transform;
+  @apply flex items-center text-blue-600 font-medium transition-transform;
 }
 
 .feature-card:hover .card-link {

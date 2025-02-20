@@ -2,7 +2,7 @@
   <div class="min-h-screen bg-gray-50">
     <navigation-main-navigation />
     <navigation-sub-navigation v-if="showSubNav" />
-    <main :class="['relative z-10', showSubNav ? 'pt-36 pb-24' : 'pt-24 pb-24']">
+    <main :class="['relative z-10 pt-6 pb-24 lg:pt-8 sm:pt-6']">
       <UContainer class="px-6">
         <NuxtPage />
       </UContainer>
@@ -14,7 +14,7 @@
 <script setup lang="ts">
 const route = useRoute();
 const router = useRouter();
-const showSubNav = computed(() => route.path !== '/');
+const showSubNav = computed(() => route.path !== "/");
 const isRouteChanging = ref(false);
 
 // Handle route changes

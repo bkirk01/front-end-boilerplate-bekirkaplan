@@ -5,8 +5,9 @@ const { getPokemons, refMappedPokemons, totalPage, loading } = usePokemonApi();
 const viewStore = useViewStore();
 const view = computed({
   get: () => viewStore.pokemonView,
-  set: () => viewStore.toggleView("pokemon"),
+  set: () => viewStore.toggleView(ESelectedView.POKEMON),
 });
+viewStore.setPage(ESelectedView.POKEMON);
 
 const paginationProps = {
   totalPages: totalPage,
@@ -16,8 +17,8 @@ const page = ref(1);
 const isAnimating = ref(false);
 
 await useAsyncData(
-  () =>
-    getPokemons(
+  async () =>
+    await getPokemons(
       paginationProps.limit,
       (page.value - 1) * paginationProps.limit
     ),
@@ -52,7 +53,7 @@ watch(page, () => {
     <BackgroundsPokemonWallpaperBackground />
 
     <!-- Loading Overlay -->
-    <UiLoadingOverlay v-if="loading" />
+    <UiLoadingOverlay v-show="loading" />
 
     <!-- Content -->
     <Transition
@@ -70,8 +71,8 @@ watch(page, () => {
               :image="pokemon.image"
               :title="pokemon.name"
               :details-link="`/pokemon/${pokemon.id}`"
-              :type="pokemon.type"
               :badges="pokemon.badges"
+              :type="pokemon.type"
             />
           </template>
           <template v-else>
@@ -82,8 +83,6 @@ watch(page, () => {
               :title="pokemon.name"
               :details-link="`/pokemon/${pokemon.id}`"
               :badges="pokemon.badges"
-              :height="pokemon.height"
-              :weight="pokemon.weight"
               :type="pokemon.type"
             />
           </template>
