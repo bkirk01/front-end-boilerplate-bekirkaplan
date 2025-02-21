@@ -9,7 +9,7 @@ export interface ICBaseCardDetailItem extends ICBaseCardItem {
     text: string;
     color: string;
   }[];
-  info: {
+  info?: {
     label: string;
     value: string | number;
   }[];

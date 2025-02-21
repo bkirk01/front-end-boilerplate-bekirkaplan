@@ -1,6 +1,6 @@
 import type { ICBaseCardDetailItem } from "./common.types";
 
-export const IPOKEMON_COLORS: Record<string, string> = {
+export const ICAHARACTER_COLORS: Record<string, string> = {
   normal: "gray",
   fire: "red",
   water: "blue",
@@ -21,7 +21,7 @@ export const IPOKEMON_COLORS: Record<string, string> = {
   fairy: "fuchsia",
 };
 
-export const IPOKEMON_GRADIENTS: Record<string, { from: string; to: string }> =
+export const ICHARACTER_GRADIENTS: Record<string, { from: string; to: string }> =
   {
     normal: { from: "gray-500", to: "gray-600" },
     fire: { from: "red-500", to: "red-600" },
@@ -43,9 +43,17 @@ export const IPOKEMON_GRADIENTS: Record<string, { from: string; to: string }> =
     fairy: { from: "fuchsia-500", to: "fuchsia-600" },
   };
 
-export interface IPokemonBaseCardSpecifications extends ICBaseCardDetailItem {
+export interface ICharacterBaseCardSpecifications extends ICBaseCardDetailItem {
   type: string;
   badges?: { text: string; color: string }[];
   height?: number;
   weight?: number;
+}
+
+export interface ICharacterApiResponse {
+  info: {
+    count: number;
+    pages: number;
+  };
+  results: any[]; // Replace `any` with a more specific type if available
 }

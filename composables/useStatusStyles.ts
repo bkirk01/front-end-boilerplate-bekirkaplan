@@ -1,11 +1,12 @@
-import { TYPE_COLORS } from '~/mappers/pokemon';
+import { IPOKEMON_COLORS } from "~/types/pokemonColor.types";
+
 
 export function useStatusStyles(status: string, type?: string) {
   const isPokemon = computed(() => !!type);
 
   const background = computed(() => {
     if (isPokemon.value) {
-      const color = TYPE_COLORS[type || 'normal'] || 'gray';
+      const color = IPOKEMON_COLORS[type || 'normal'] || 'gray';
       return `bg-gradient-to-br from-white/30 to-${color}-50/30`;
     }
 
@@ -21,7 +22,7 @@ export function useStatusStyles(status: string, type?: string) {
 
   const gradient = computed(() => {
     if (isPokemon.value) {
-      const color = TYPE_COLORS[type || 'normal'] || 'gray';
+      const color = IPOKEMON_COLORS[type || 'normal'] || 'gray';
       return `bg-gradient-to-br from-${color}-500/80 to-${color}-600/80`;
     }
 

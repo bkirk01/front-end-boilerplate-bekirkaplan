@@ -78,9 +78,11 @@
 </template>
 
 <script setup lang="ts">
-import type { DetailItem } from "~/types/common";
+import type { ICharacterBaseCardSpecifications } from "~/api/types/character.types";
+import type { IPokemonBaseCardSpecifications } from "~/api/types/pokemon.types";
+
 const props = defineProps<{
-  data?: DetailItem;
+  data?: IPokemonBaseCardSpecifications | ICharacterBaseCardSpecifications;
   error?: { title: string; message: string };
 }>();
 

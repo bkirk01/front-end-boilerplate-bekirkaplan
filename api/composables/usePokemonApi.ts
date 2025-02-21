@@ -1,8 +1,8 @@
 import { ref } from 'vue';
 import type { Pokemon } from 'pokenode-ts';
 import { apiPokemonClient} from '@/api/config/axiosPokemon';
-import { mapPokemonToBaseItem } from '@/api/mappers/pokemon.mapper';
-import type { IPBaseCardSpecifications } from '@/api/types/pokemon.types';
+import { mapPokemonToBaseItem, mapPokemonToDetailItem } from '@/api/mappers/pokemon.mapper';
+import type { IPokemonBaseCardSpecifications } from '@/api/types/pokemon.types';
 
 /**
  * Composable for interacting with the Pokémon API using Pokenode-ts.
@@ -10,7 +10,8 @@ import type { IPBaseCardSpecifications } from '@/api/types/pokemon.types';
 export const usePokemonApi = () => {
   const loading = ref(false);
   const error = ref<string | null>(null);
-  const refMappedPokemons = ref<IPBaseCardSpecifications[]>([]);
+  const refMappedPokemons = ref<IPokemonBaseCardSpecifications[]>([]);
+  const refMappedPokemon = ref<IPokemonBaseCardSpecifications>();
   const totalPage = ref<number>(0);
 
   /**
@@ -27,7 +28,7 @@ export const usePokemonApi = () => {
     try {
       const pokemons = await apiPokemonClient.listPokemons(offset, limit);
       totalPage.value = pokemons.count;
-      const mappedPokemons: IPBaseCardSpecifications[] = await Promise.all(
+      const mappedPokemons: IPokemonBaseCardSpecifications[] = await Promise.all(
         pokemons.results.map(pokemon => mapPokemonToBaseItem(pokemon))
       );
       refMappedPokemons.value = mappedPokemons;
@@ -45,27 +46,28 @@ export const usePokemonApi = () => {
    * @param id Pokémon identifier.
    * @returns Pokémon details or null on error.
    */
-  const getPokemonById = async (id: number): Promise<Pokemon | null> => {
-    if (loading.value) return null;
+  const getPokemonById = async (id: number): Promise<boolean> => {
+    if (loading.value) refMappedPokemon.value = {} as IPokemonBaseCardSpecifications;
     loading.value = true;
     error.value = null;
 
     try {
-      return await apiPokemonClient.getPokemonById(id);
+      const pokemon = await apiPokemonClient.getPokemonById(id);
+      refMappedPokemon.value = mapPokemonToDetailItem(pokemon);
+      return true;
     } catch (err) {
       error.value = `Failed to fetch Pokémon details: ${String(err)}`;
-      return null;
+      return false;
     } finally {
       loading.value = false;
     }
   };
 
-  getPokemons();
-
   return {
     loading,
     error,
     refMappedPokemons,
+    refMappedPokemon,
     totalPage,
     getPokemons,
     getPokemonById,

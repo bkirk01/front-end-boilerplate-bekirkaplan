@@ -1,12 +1,12 @@
 import { IPOKEMON_COLORS } from "~/types/pokemonColor.types";
 import { apiPokemonClient } from "../config/axiosPokemon";
 import type { NamedAPIResource, Pokemon } from "pokenode-ts";
-import type { IPBaseCardSpecifications } from "../types/pokemon.types";
+import type { IPokemonBaseCardSpecifications } from "../types/pokemon.types";
 import type { ICBaseCardDetailItem } from "../types/common.types";
 
 export async function mapPokemonToBaseItem(
   pokemon: NamedAPIResource,
-): Promise<IPBaseCardSpecifications> {
+): Promise<IPokemonBaseCardSpecifications> {
   // Fetch additional details for the Pokemon
   const details:Pokemon = await apiPokemonClient.getPokemonByName(pokemon.name);
 
