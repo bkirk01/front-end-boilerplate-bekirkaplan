@@ -30,12 +30,12 @@ const updatePage = (page: number) => {
   emit("update:modelValue", page);
 };
 
-// 🔄 Watch for changes in modelRef and call updatePage
+// Watch for changes in modelRef and call updatePage
 watch(modelRef, (newPage) => {
   updatePage(newPage);
 });
 
-// 🔄 Sync modelRef with prop if parent updates it
+// Sync modelRef with prop if parent updates it
 watch(
   () => props.modelValue,
   (newVal) => {

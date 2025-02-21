@@ -50,7 +50,6 @@ const view = computed(() => {
 
 // Methods
 function toggleView() {
-  debugger;
   if (viewStore.selectedView === ESelectedView.POKEMON) {
     viewStore.toggleView("pokemon");
   } else {

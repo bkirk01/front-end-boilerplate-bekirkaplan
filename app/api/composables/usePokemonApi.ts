@@ -30,6 +30,10 @@ export const usePokemonApi = () => {
       const mappedPokemons: IPokemonBaseCardSpecifications[] = await Promise.all(
         pokemons.results.map(pokemon => mapPokemonToBaseItem(pokemon))
       );
+      
+      const totalPages = Math.ceil(pokemons.count / limit);
+      totalPage.value = totalPages;
+
       refMappedPokemons.value = mappedPokemons;
       return true;
     } catch (err) {

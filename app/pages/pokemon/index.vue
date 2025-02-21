@@ -11,18 +11,19 @@ if (!viewStore) {
 }
 
 const page = ref(1);
-watch(page, () => {
-  viewStore.setPage(ESelectedView.POKEMON);
+useClientSideHandlers(page, loading, getPokemons);
+
+watch(page, (newValue) => {
+  page.value = newValue;
+  viewStore.setPage(ESelectedView.RICKMORTY);
+  getPokemons(20,
+  (page.value - 1) * 20);
 });
 
 // Computed view getter/setter for toggling
 const view = computed({
   get: () => viewStore.pokemonView,
   set: () => viewStore.toggleView(ESelectedView.POKEMON),
-});
-
-watchEffect(() => {
-  useClientSideHandlers(page, loading, getPokemons);
 });
 </script>
 

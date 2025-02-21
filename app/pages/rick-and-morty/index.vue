@@ -12,8 +12,12 @@ if (!viewStore) {
 }
 
 const page = ref(1);
-watch(page, () => {
+useClientSideHandlers(page, loading, getCharacters);
+
+watch(page, (newValue) => {
+  page.value = newValue;
   viewStore.setPage(ESelectedView.RICKMORTY);
+  getCharacters(20, newValue - 1);
 });
 
 // Computed view getter/setter
@@ -22,9 +26,6 @@ const view = computed({
   set: () => viewStore.toggleView("rickAndMorty"),
 });
 
-watchEffect(() => {
-  useClientSideHandlers(page, loading, getCharacters);
-});
 </script>
 
 <template>
@@ -67,9 +68,7 @@ watchEffect(() => {
 
     <!-- Conditionally render pagination after data load -->
     <client-only>
-      <UiFixedPagination v-if="!loading" v-model="page" :total="totalPage" />
-    </client-only>
-    <client-only>
+      <UiFixedPagination v-model="page" :total="totalPage" />
       <UiScrollToTop />
     </client-only>
   </div>
