@@ -10,10 +10,12 @@ const props = defineProps<{
   type?: string;
   badges?: { text: string; color: string }[];
 }>();
+
+const isClient = import.meta.client;
 </script>
 
 <template>
-  <UiBaseCard :to="props.detailsLink">
+  <UiBaseCard v-if="isClient" :to="props.detailsLink">
     <div class="card-header">
       <UiBaseGradient
         class="relative px-4 pt-4 pb-20 backdrop-blur-sm"

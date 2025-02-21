@@ -13,6 +13,7 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxtjs/tailwindcss',
   ],
+  ssr:true,
   content: {},
   ui: {
     global: true,
@@ -63,7 +64,7 @@ export default defineNuxtConfig({
     },
     prerender: {
       crawlLinks: false,
-      routes: ['/', '/pokemon/index', '/rick-and-morty/index'],
+      routes: ['/', '/pokemon', '/rick-and-morty'],
     },
   },
   app: {

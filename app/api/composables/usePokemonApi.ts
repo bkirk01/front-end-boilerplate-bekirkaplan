@@ -1,5 +1,4 @@
 import { ref } from 'vue';
-import type { Pokemon } from 'pokenode-ts';
 import { apiPokemonClient} from '~/api/config/axiosPokemon';
 import { mapPokemonToBaseItem, mapPokemonToDetailItem } from '~/api/mappers/pokemon.mapper';
 import type { IPokemonBaseCardSpecifications } from '~/api/types/pokemon.types';

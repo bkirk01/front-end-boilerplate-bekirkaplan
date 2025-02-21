@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { NuxtLink } from "#components";
 
+const isClient = process.client;
+
 const props = defineProps<{
   image: string;
   title: string;
@@ -11,50 +13,49 @@ const props = defineProps<{
 </script>
 
 <template>
-  <NuxtLink :to="detailsLink" class="block">
-    <div class="list-card">
-      <div class="flex">
-        <!-- Image Section -->
-        <div class="image-container p-2'">
-          <ui-avatar :image="image" :alt="title" size="sm" />
-        </div>
+  <div v-if="isClient">
+    <NuxtLink :to="detailsLink" class="block">
+      <div class="list-card">
+        <div class="flex">
+          <!-- Image Section -->
+          <div class="image-container p-2'">
+            <ui-avatar :image="image" :alt="title" size="sm" />
+          </div>
 
-        <!-- Content Section -->
-        <div class="content">
-          <div class="content-inner">
-            <h3 class="title">{{ title }}</h3>
+          <!-- Content Section -->
+          <div class="content">
+            <div class="content-inner">
+              <h3 class="title">{{ title }}</h3>
 
-            <!-- Badges -->
-            <div class="badges">
-              <DBadge
-                v-if="badges && badges.length > 0"
-                v-for="badge in badges"
-                :key="badge.text"
-                :color="badge.color"
-                class="backdrop-blur-sm w-20"
-              >
-                {{ badge.text }}
-              </DBadge>
-              <DBadge v-else color="yellow" class="backdrop-blur-sm">
-                Unknown
-              </DBadge>
+              <!-- Badges -->
+              <div class="badges">
+                <DBadge
+                  v-if="badges && badges.length > 0"
+                  v-for="badge in badges"
+                  :key="badge.text"
+                  :color="badge.color"
+                  class="backdrop-blur-sm w-20"
+                >
+                  {{ badge.text }}
+                </DBadge>
+                <DBadge v-else color="yellow" class="backdrop-blur-sm">
+                  Unknown
+                </DBadge>
+              </div>
             </div>
-            
           </div>
-        </div>
 
-        <!-- Button Section -->
-        <NuxtLink 
-          class="button-container"
-        >
-          <div class="details-button">
-            <span>Details</span>
-            <UIcon name="i-heroicons-arrow-right" class="button-icon" />
-          </div>
-        </NuxtLink>
+          <!-- Button Section -->
+          <NuxtLink class="button-container">
+            <div class="details-button">
+              <span>Details</span>
+              <UIcon name="i-heroicons-arrow-right" class="button-icon" />
+            </div>
+          </NuxtLink>
+        </div>
       </div>
-    </div>
-  </NuxtLink>
+    </NuxtLink>
+  </div>
 </template>
 
 <style scoped>

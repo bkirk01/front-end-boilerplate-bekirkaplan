@@ -1,15 +1,17 @@
 <template>
-  <div class="fixed-pagination">
-    <UContainer>
-      <div class="pagination-wrapper">
-        <ui-custom-pagination
-          :model-value="modelValue"
-          :total="total"
-          @update:model-value="$emit('update:modelValue', $event)"
-        />
-      </div>
-    </UContainer>
-  </div>
+  <client-only>
+    <div class="fixed-pagination">
+      <UContainer>
+        <div class="pagination-wrapper">
+          <ui-custom-pagination
+            :model-value="modelValue"
+            :total="total"
+            @update:model-value="$emit('update:modelValue', $event)"
+          />
+        </div>
+      </UContainer>
+    </div>
+  </client-only>
 </template>
 
 <script setup lang="ts">
@@ -19,8 +21,17 @@ const props = defineProps<{
 }>();
 
 const emit = defineEmits<{
-  (e: 'update:modelValue', value: number): void;
+  (e: "update:modelValue", value: number): void;
 }>();
+
+if (import.meta.client) {
+  watch(
+    () => props.modelValue,
+    (newValue) => {
+      console.log(`Client-side pagination changed to page ${newValue}`);
+    }
+  );
+}
 </script>
 
 <style scoped>

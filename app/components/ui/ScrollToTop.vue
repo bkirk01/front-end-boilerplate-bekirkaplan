@@ -6,8 +6,9 @@
     variant="solid"
     :ui="{
       rounded: 'rounded-full',
-      padding: 'p-3',
-      background: 'bg-white/90 hover:bg-white dark:bg-gray-900/90 dark:hover:bg-gray-900',
+      xs: 'xs',
+      background:
+        'bg-white/90 hover:bg-white dark:bg-gray-900/90 dark:hover:bg-gray-900',
       ring: 'ring-1 ring-gray-200 dark:ring-gray-800',
       cursor: 'cursor-pointer',
     }"
@@ -20,21 +21,22 @@
 const showButton = ref(false);
 
 function scrollToTop() {
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth',
-  });
+  if (import.meta.client) {
+    watch(showButton, () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    function checkScroll() {
+      showButton.value = window.scrollY > 500;
+    }
+
+    onMounted(() => {
+      window.addEventListener("scroll", checkScroll);
+    });
+
+    onUnmounted(() => {
+      window.removeEventListener("scroll", checkScroll);
+    });
+  }
 }
-
-function checkScroll() {
-  showButton.value = window.scrollY > 500;
-}
-
-onMounted(() => {
-  window.addEventListener('scroll', checkScroll);
-});
-
-onUnmounted(() => {
-  window.removeEventListener('scroll', checkScroll);
-});
 </script>
