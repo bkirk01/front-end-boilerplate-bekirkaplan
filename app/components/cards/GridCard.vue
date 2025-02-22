@@ -8,7 +8,7 @@ const props = defineProps<{
   height?: number
   detailsLink?: string
   type?: string
-  badges?: { text: string, color: string }[]
+  badges?: { text: string, color: TGenColorKeyTypes }[]
 }>()
 </script>
 
@@ -35,7 +35,7 @@ const props = defineProps<{
           <DBadge
             v-for="badge in badges"
             :key="badge.text"
-            :color="badge.color as TGenColorKeyTypes"
+            :color="badge.color"
             style="padding: 0.5rem 1rem"
           >
             {{ badge.text }}

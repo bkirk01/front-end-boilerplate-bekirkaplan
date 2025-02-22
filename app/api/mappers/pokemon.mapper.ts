@@ -2,7 +2,7 @@ import type { NamedAPIResource, Pokemon } from 'pokenode-ts'
 import type { ICBaseCardDetailItem } from '~/api/types/common.types'
 import type { IPokemonBaseCardSpecifications } from '~/api/types/pokemon.types'
 import { apiPokemonClient } from '~/api/config/axiosPokemon'
-import { IPOKEMON_COLORS } from '~/types/pokemonColor.types'
+import { IPOKEMON_COLORS } from '~/constants/ConstPokemonColor'
 
 export async function mapPokemonToBaseItem(
   pokemon: NamedAPIResource,
@@ -12,7 +12,7 @@ export async function mapPokemonToBaseItem(
 
   const badges = details?.types?.map((type: any) => ({
     text: type.type.name,
-    color: IPOKEMON_COLORS[type.type.name] || 'gray',
+    color: IPOKEMON_COLORS[type.type.name] || 'default',
   }))
 
   return {

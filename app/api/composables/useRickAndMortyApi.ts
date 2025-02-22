@@ -76,7 +76,7 @@ export function useRickAndMortyApi() {
       const totalPages = Math.ceil(totalCount / limit)
       totalPage.value = totalPages
 
-      // ✅ Correct slicing: based on pageNumber and limit
+      // Correct slicing: based on pageNumber and limit, need to consider to move util classes.???
       const startSlice = (pageNumber * limit) % defaultApiPageSize
       const mappedCharacters = await Promise.all(
         combinedResults.slice(startSlice, startSlice + limit).map(mapCharacterToBaseItem),

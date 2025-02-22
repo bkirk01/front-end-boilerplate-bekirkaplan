@@ -16,8 +16,8 @@ const props = withDefaults(
 
 <template>
   <span
-    class="inline-flex items-center rounded-lg px-3 py-1 text-xs font-medium ring-1 ring-inset" :class="[
-      IGEN_BADGE_COLOR_SCHEME[props.color || 'gray'],
+    class="inline-flex items-center mr-1 rounded-lg px-3 py-1 text-xs font-medium ring-1 ring-inset" :class="[
+      IGEN_BADGE_COLOR_SCHEME[props.color || 'default' as TGenColorKeyTypes],
       className,
     ]"
   >
