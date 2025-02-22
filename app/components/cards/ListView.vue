@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { TGenColorKeyTypes } from '~/types/common'
 import { NuxtLink } from '#components'
 
 defineProps<{
@@ -35,7 +36,7 @@ const isClient = import.meta.client
                   <DBadge
                     v-for="badge in badges"
                     :key="badge.text"
-                    :color="badge.color"
+                    :color="badge.color as TGenColorKeyTypes"
                     class="backdrop-blur-sm w-20"
                   >
                     {{ badge.text }}

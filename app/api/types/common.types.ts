@@ -4,6 +4,7 @@ export interface ICBaseCardItem {
   id: string | number
   name: string
   image: string
+  type: string
 }
 
 export interface ICBaseCardDetailItem extends ICBaseCardItem {
@@ -25,5 +26,4 @@ export interface ICBaseCardDetailItem extends ICBaseCardItem {
     title: string
     items: string[]
   }
-  type: string
 }

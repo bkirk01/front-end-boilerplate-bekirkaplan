@@ -5,7 +5,7 @@ import DetailView from '~/components/DetailView.vue'
 
 // Get route params
 const route = useRoute()
-const id = route.params.id as string
+const id = route.params.id
 const { loading, error, refMappedCharacter, getCharacterById } = useRickAndMortyApi()
 
 await getCharacterById(Number(id))

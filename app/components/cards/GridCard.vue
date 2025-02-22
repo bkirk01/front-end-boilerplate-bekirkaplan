@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { TGenColorKeyTypes } from '~/types/common'
+
 const props = defineProps<{
   image: string
   title: string
@@ -6,7 +8,7 @@ const props = defineProps<{
   height?: number
   detailsLink?: string
   type?: string
-  badges?: { text: string, color: string }[]
+  badges?: { text: string, color: TGenColorKeyTypes }[]
 }>()
 </script>
 

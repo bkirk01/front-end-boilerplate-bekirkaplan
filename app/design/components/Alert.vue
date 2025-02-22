@@ -22,10 +22,10 @@ const icons = {
 </script>
 
 <template>
-  <div class="rounded-lg p-4" :class="[colors[color], className]">
+  <div class="rounded-lg p-4" :class="[colors[color || 'red'], className]">
     <div class="flex">
       <div class="flex-shrink-0">
-        <UIcon :name="icons[color]" class="h-5 w-5" />
+        <UIcon :name="icons[color || 'red']" class="h-5 w-5" />
       </div>
       <div class="ml-3">
         <h3 v-if="title" class="text-sm font-medium">

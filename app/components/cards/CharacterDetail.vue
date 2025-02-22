@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useViewStore } from '~/store/view'
-import { ERoutePaths, type TCItemDetailType } from '~/types/common'
+import { ERoutePaths, type TCItemDetailType, type TGenColorKeyTypes } from '~/types/common'
 
 defineProps<{
   data?: TCItemDetailType
@@ -34,7 +34,7 @@ const isPokemon = computed(
             <DBadge
               v-for="badge in data.badges"
               :key="badge.text"
-              :color="badge.color"
+              :color="badge.color as TGenColorKeyTypes"
               class="badge"
             >
               {{ badge.text }}
