@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
 import confPokemonApp from '~/config/pokemonConfig'
 import confRickMortyApp from '~/config/rickMortyConfig'
 import { useViewStore } from '~/store/view'
@@ -36,11 +35,11 @@ const sizeClasses = computed(() => {
 
 // ✅ Handle image load error by switching to fallback image
 function handleImageError() {
-  if (currentImage.value !== confRickMortyApp.loadingImage && currentImage.value !== confPokemonApp.loadingImage) {
+  if (currentImage.value !== confRickMortyApp.loadingImage && currentImage.value !== confPokemonApp.mainLoadAnimationImage) {
     currentImage.value
       = viewStore.selectedView === ERoutePaths.RICKMORTY
         ? confRickMortyApp.loadingImage
-        : confPokemonApp.loadingImage
+        : confPokemonApp.mainLoadAnimationImage
   }
   else {
     console.error('Fallback image failed to load.')

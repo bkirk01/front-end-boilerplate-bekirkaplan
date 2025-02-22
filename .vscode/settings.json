@@ -43,5 +43,8 @@
   "iconify.annotations": true,
   "iconify.inplace": true,
   "eslint.format.enable": true,
-  "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+  "[vue]": {
+    "editor.defaultFormatter": "Vue.volar"
+  }
 }

@@ -21,7 +21,7 @@
 }
 
 .card-header {
-  @apply relative;
+  @apply relative pb-16;
 }
 
 .header-content {
