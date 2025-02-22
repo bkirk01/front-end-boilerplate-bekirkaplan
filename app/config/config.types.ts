@@ -6,6 +6,7 @@ export interface IMainNavigationConfig {
 
 export interface ISubNavigationConfig {
   pageTitle: string
+  pageTitleIcon: string
   bgColor: string
 }
 

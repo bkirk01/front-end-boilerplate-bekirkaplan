@@ -4,6 +4,7 @@ import loadingImage from '~/assets/animations/loading-animation-pikacu.gif'
 const confPokemonApp: IAppConfig = {
   subNavigationProps: {
     pageTitle: 'Pokémon',
+    pageTitleIcon: 'i-heroicons-sparkles',
     bgColor: 'white',
   },
   contentContainerConfig: {
