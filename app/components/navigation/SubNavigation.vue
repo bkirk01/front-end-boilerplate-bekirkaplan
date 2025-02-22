@@ -1,18 +1,11 @@
 <script setup lang="ts">
 import { useViewStore } from '~/store/view'
-import { ERoutePaths } from '~/types/common'
 
 const route = useRoute()
 const viewStore = useViewStore()
+const appStore = useAppStore()
 
-// Computed properties
-const showViewToggle = computed(() => {
-  return route.name !== '/'
-})
-
-const showBackButton = computed(() => {
-  return route.params.id !== undefined
-})
+const showBackButton = computed(() => 'id' in route.params && !!route.params.id)
 
 const parentPath = computed(() => {
   const pathParts = route.path.split('/')
@@ -20,29 +13,10 @@ const parentPath = computed(() => {
 })
 
 // TODO: must be get from centrialized config file for api
-const pageTitle = computed(() => {
-  if (route.name === ERoutePaths.POKEMON) {
-    return 'Pokémon'
-  }
-  if (route.name === ERoutePaths.RICKMORTY) {
-    return 'Rick & Morty Characters'
-  }
-  if (route.name) {
-    return route.params.name
-  }
-  return ''
-})
+const pageTitle = appStore.configuration.subNavigationProps?.pageTitle
 
 // TODO: must be get from centrialized config file for api
-const pageIcon = computed(() => {
-  if (route.name === ERoutePaths.POKEMON) {
-    return 'i-heroicons-sparkles'
-  }
-  if (route.name === ERoutePaths.RICKMORTY) {
-    return 'i-heroicons-film'
-  }
-  return 'i-heroicons-document'
-})
+const pageIcon = appStore.configuration.subNavigationProps?.pageTitleIcon
 
 const view = computed(() => {
   if (route.path.startsWith('/pokemon')) {
@@ -68,7 +42,7 @@ const view = computed(() => {
               <span class="back-text">Back</span>
             </NuxtLink>
             <div v-if="pageTitle" class="title-container">
-              <UIcon :name="pageIcon" class="title-icon" />
+              <UIcon :name="pageIcon || ''" class="title-icon" />
               <h1 class="title-text">
                 {{ pageTitle }}
               </h1>
@@ -77,7 +51,7 @@ const view = computed(() => {
 
           <!-- Right Side: View Toggle -->
           <navigation-view-toggle
-            v-if="showViewToggle"
+            v-if="!showBackButton"
             :view="view"
             @update:view="viewStore.toggleView"
           />

@@ -34,25 +34,6 @@ export function useRouteManager() {
   }
 
   /**
-   * Navigate with dynamic params.
-   * @param name - Named route.
-   * @param params - Dynamic params to pass.
-   * @param query - Optional query parameters.
-   */
-  const navigateWithParams = async (
-    name: string,
-    params: Record<string, any>,
-    query: Record<string, any> = {},
-  ) => {
-    try {
-      await router.push({ name, params, query })
-    }
-    catch (error) {
-      console.error(`Navigation error for ${name}:`, error)
-    }
-  }
-
-  /**
    * Go back to the previous route.
    */
   const goBack = () => {
@@ -89,7 +70,6 @@ export function useRouteManager() {
     currentParams,
     currentQuery,
     navigateTo,
-    navigateWithParams,
     goBack,
     updateQuery,
   }

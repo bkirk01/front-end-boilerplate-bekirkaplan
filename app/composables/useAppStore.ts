@@ -1,6 +1,7 @@
 import type { IAppConfig, IAppConfigs } from '~/config/config.types'
 import { useRoute } from 'vue-router'
-import appConfigs, { IDefaultAppConfig } from '~/config/appConfig'
+import appConfigs from '~/config/appConfig'
+import { IDefaultAppConfig } from '~/config/defaultConfig'
 import { ERoutePaths } from '~/types/common'
 
 export default function useAppStore(): {
