@@ -5,6 +5,7 @@ export default defineNuxtConfig({
   modules: [
     '@vueuse/nuxt',
     '@pinia/nuxt',
+    '@pinia-plugin-persistedstate/nuxt',
     '@vite-pwa/nuxt',
     '@nuxt/eslint',
     '@nuxt/ui',
@@ -13,7 +14,7 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxtjs/tailwindcss',
   ],
-  ssr:true,
+  ssr: true,
   content: {},
   ui: {
     global: true,

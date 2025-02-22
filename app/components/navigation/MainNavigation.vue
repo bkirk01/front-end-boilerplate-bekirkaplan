@@ -1,3 +1,7 @@
+<script setup lang="ts">
+const route = useRoute()
+</script>
+
 <template>
   <nav class="nav-container">
     <UContainer>
@@ -8,16 +12,16 @@
         <div class="nav-links">
           <NuxtLink
             to="/rick-and-morty"
-            :class="['nav-link', route.path.startsWith('/rick-and-morty') ? 'active' : '']"
+            class="nav-link" :class="[route.path.startsWith('/rick-and-morty') ? 'active' : '']"
           >
-            <img src="~/assets/icons/rick.jpeg" alt="Rick" class="nav-icon rick-icon" />
+            <img src="~/assets/icons/rick.jpeg" alt="Rick" class="nav-icon rick-icon">
             <span class="nav-text">Rick & Morty</span>
           </NuxtLink>
           <NuxtLink
             to="/pokemon"
-            :class="['nav-link', route.path.startsWith('/pokemon') ? 'active' : '']"
+            class="nav-link" :class="[route.path.startsWith('/pokemon') ? 'active' : '']"
           >
-            <img src="~/assets/icons/pikacu.png" alt="Pikachu" class="nav-icon pikachu-icon" />
+            <img src="~/assets/icons/pikacu.png" alt="Pikachu" class="nav-icon pikachu-icon">
             <span class="nav-text">Pokémon</span>
           </NuxtLink>
         </div>
@@ -25,10 +29,6 @@
     </UContainer>
   </nav>
 </template>
-
-<script setup lang="ts">
-const route = useRoute();
-</script>
 
 <style scoped>
 .nav-container {

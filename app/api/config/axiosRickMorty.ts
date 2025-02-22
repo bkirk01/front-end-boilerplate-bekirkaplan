@@ -1,4 +1,3 @@
-import * as apiRickMortyClient from 'rickmortyapi';
+import * as apiRickMortyClient from 'rickmortyapi'
 
-
-export default apiRickMortyClient;
+export default apiRickMortyClient

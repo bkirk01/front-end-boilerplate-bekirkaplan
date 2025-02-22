@@ -1,16 +1,15 @@
-<template>
-  <span
-    :class="[
-      'inline-flex items-center rounded-lg px-3 py-1 text-xs font-medium ring-1 ring-inset',
-      COLORS[color],
-      className,
-    ]"
-  >
-    <slot />
-  </span>
-</template>
-
 <script setup lang="ts">
+withDefaults(
+  defineProps<{
+    color: string
+    className?: string
+  }>(),
+  {
+    color: 'default', // Default color
+    className: '', // Default className
+  },
+)
+
 const COLORS = {
   gray: 'bg-gray-50/80 text-gray-800 ring-gray-500/20',
   red: 'bg-red-50/80 text-red-800 ring-red-500/20',
@@ -31,16 +30,16 @@ const COLORS = {
   stone: 'bg-stone-50/80 text-stone-800 ring-stone-500/20',
   fuchsia: 'bg-fuchsia-50/80 text-fuchsia-800 ring-fuchsia-500/20',
   default: 'bg-gray-200/80 text-gray-800 ring-gray-300/40',
-};
-
-withDefaults(
-  defineProps<{
-    color: string;
-    className?: string;
-  }>(),
-  {
-    color: 'default', // Default color
-    className: '',    // Default className
-  }
-);
+}
 </script>
+
+<template>
+  <span
+    class="inline-flex items-center rounded-lg px-3 py-1 text-xs font-medium ring-1 ring-inset" :class="[
+      COLORS[color],
+      className,
+    ]"
+  >
+    <slot />
+  </span>
+</template>

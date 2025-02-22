@@ -1,30 +1,28 @@
 <script setup lang="ts">
-import { usePokemonApi } from "~/api";
-import { useClientSideHandlers } from "~/composables/clientSide/rick-and-morty/useClientSideHandler";
-import { ESelectedView, useViewStore } from "~/stores/view";
+import { usePokemonApi } from '~/api'
+import { useClientSideHandlers } from '~/composables/clientSide/useClientSideHandler'
+import { useViewStore } from '~/store/view'
 
-const { getPokemons, refMappedPokemons, totalPage, loading } = usePokemonApi();
-const viewStore = useViewStore();
+const { getPokemons, refMappedPokemons, totalPage, loading } = usePokemonApi()
+const viewStore = useViewStore()
 
 if (!viewStore) {
-  throw new Error("Pinia store is not initialized.");
+  throw new Error('Pinia store is not initialized.')
 }
 
-const page = ref(1);
-useClientSideHandlers(page, loading, getPokemons);
+const page = ref(1)
+useClientSideHandlers(page, loading, getPokemons)
 
 watch(page, (newValue) => {
-  page.value = newValue;
-  viewStore.setPage(ESelectedView.RICKMORTY);
-  getPokemons(20,
-  (page.value - 1) * 20);
-});
+  page.value = newValue
+  getPokemons(20, (page.value - 1) * 20)
+})
 
 // Computed view getter/setter for toggling
 const view = computed({
   get: () => viewStore.pokemonView,
-  set: () => viewStore.toggleView(ESelectedView.POKEMON),
-});
+  set: () => viewStore.toggleView(),
+})
 </script>
 
 <template>
@@ -72,6 +70,6 @@ const view = computed({
 </template>
 
 <style>
-@import "~/assets/css/views/grid.css";
-@import "~/assets/css/views/list.css";
+@import '~/assets/css/views/grid.css';
+@import '~/assets/css/views/list.css';
 </style>

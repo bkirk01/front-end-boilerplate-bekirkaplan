@@ -1,21 +1,17 @@
 <script setup lang="ts">
-const route = useRoute();
-
 const props = defineProps<{
-  image: string;
-  title: string;
-  weight?: number;
-  height?: number;
-  detailsLink?: string;
-  type?: string;
-  badges?: { text: string; color: string }[];
-}>();
-
-const isClient = import.meta.client;
+  image: string
+  title: string
+  weight?: number
+  height?: number
+  detailsLink?: string
+  type?: string
+  badges?: { text: string, color: string }[]
+}>()
 </script>
 
 <template>
-  <UiBaseCard v-if="isClient" :to="props.detailsLink">
+  <UiBaseCard :to="props.detailsLink">
     <div class="card-header">
       <UiBaseGradient
         class="relative px-4 pt-4 pb-20 backdrop-blur-sm"
@@ -33,18 +29,21 @@ const isClient = import.meta.client;
 
     <div class="px-4 py-4 flex flex-col items-center">
       <div class="flex gap-2 mb-3">
-        <DBadge
-          v-if="badges && badges.length > 0"
-          v-for="badge in badges"
-          :key="badge.text"
-          :color="badge.color"
-          style="padding: 0.5rem 1rem"
-        >
-          {{ badge.text }}
-        </DBadge>
-        <DBadge v-else color="yellow" style="padding: 0.5rem 1rem">
-          Unknown
-        </DBadge>
+        <div v-if="badges && badges.length > 0">
+          <DBadge
+            v-for="badge in badges"
+            :key="badge.text"
+            :color="badge.color"
+            style="padding: 0.5rem 1rem"
+          >
+            {{ badge.text }}
+          </DBadge>
+        </div>
+        <div v-else>
+          <DBadge color="yellow" style="padding: 0.5rem 1rem">
+            Unknown
+          </DBadge>
+        </div>
       </div>
 
       <UiBaseButton

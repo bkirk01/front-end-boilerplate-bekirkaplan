@@ -1,3 +1,7 @@
+<script setup lang="ts">
+import '~/assets/css/views/home.css'
+</script>
+
 <template>
   <div>
     <!-- Background with gradient -->
@@ -7,16 +11,20 @@
 
     <!-- Content -->
     <div class="hero-container">
-      <h1 class="hero-title">Welcome to Rick & Morty and Pokémon Overview</h1>
+      <h1 class="hero-title">
+        Welcome to Rick & Morty and Pokémon Overview
+      </h1>
 
       <div class="hero-grid">
         <NuxtLink to="/rick-and-morty" class="feature-card">
           <div class="card-wrapper">
             <div class="card-header">
               <div class="header-content rick-and-morty-gradient">
-                <h2 class="header-title">Rick & Morty Characters</h2>
+                <h2 class="header-title">
+                  Rick & Morty Characters
+                </h2>
               </div>
-              <img src="~/assets/icons/rick.jpeg" alt="Rick" class="header-image" />
+              <img src="~/assets/icons/rick.jpeg" alt="Rick" class="header-image">
             </div>
             <div class="card-content">
               <p class="card-description">
@@ -35,9 +43,11 @@
           <div class="card-wrapper">
             <div class="card-header">
               <div class="header-content pokemon-gradient">
-                <h2 class="header-title">Pokémon</h2>
+                <h2 class="header-title">
+                  Pokémon
+                </h2>
               </div>
-              <img src="~/assets/icons/pikacu.png" alt="Pikachu" class="header-image" />
+              <img src="~/assets/icons/pikacu.png" alt="Pikachu" class="header-image">
             </div>
             <div class="card-content">
               <p class="card-description">
@@ -55,7 +65,3 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-import '~/assets/css/views/home.css';
-</script>

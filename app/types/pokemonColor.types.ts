@@ -17,9 +17,9 @@ export const IPOKEMON_COLORS: Record<string, string> = {
   dark: 'slate',
   steel: 'zinc',
   fairy: 'fuchsia',
-};
+}
 
-export const IPOKEMON_GRADIENTS: Record<string, { from: string; to: string }> = {
+export const IPOKEMON_GRADIENTS: Record<string, { from: string, to: string }> = {
   normal: { from: 'gray-500', to: 'gray-600' },
   fire: { from: 'red-500', to: 'red-600' },
   water: { from: 'blue-500', to: 'blue-600' },
@@ -38,4 +38,4 @@ export const IPOKEMON_GRADIENTS: Record<string, { from: string; to: string }> = 
   dark: { from: 'slate-500', to: 'slate-600' },
   steel: { from: 'zinc-500', to: 'zinc-600' },
   fairy: { from: 'fuchsia-500', to: 'fuchsia-600' },
-};
+}

@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import { NuxtLink } from "#components";
+import { NuxtLink } from '#components'
 
-const isClient = process.client;
+defineProps<{
+  image: string
+  title: string
+  detailsLink: string
+  badges?: { text: string, color: string }[]
+  height?: string
+}>()
 
-const props = defineProps<{
-  image: string;
-  title: string;
-  detailsLink: string;
-  badges?: { text: string; color: string }[];
-  height?: string;
-}>();
+const isClient = import.meta.client
 </script>
 
 <template>
@@ -25,22 +25,27 @@ const props = defineProps<{
           <!-- Content Section -->
           <div class="content">
             <div class="content-inner">
-              <h3 class="title">{{ title }}</h3>
+              <h3 class="title">
+                {{ title }}
+              </h3>
 
               <!-- Badges -->
               <div class="badges">
-                <DBadge
-                  v-if="badges && badges.length > 0"
-                  v-for="badge in badges"
-                  :key="badge.text"
-                  :color="badge.color"
-                  class="backdrop-blur-sm w-20"
-                >
-                  {{ badge.text }}
-                </DBadge>
-                <DBadge v-else color="yellow" class="backdrop-blur-sm">
-                  Unknown
-                </DBadge>
+                <div v-if="badges && badges.length > 0">
+                  <DBadge
+                    v-for="badge in badges"
+                    :key="badge.text"
+                    :color="badge.color"
+                    class="backdrop-blur-sm w-20"
+                  >
+                    {{ badge.text }}
+                  </DBadge>
+                </div>
+                <div v-else>
+                  <DBadge color="yellow" class="backdrop-blur-sm">
+                    Unknown
+                  </DBadge>
+                </div>
               </div>
             </div>
           </div>
@@ -60,8 +65,8 @@ const props = defineProps<{
 
 <style scoped>
 .list-card {
-  @apply rounded-xl overflow-hidden backdrop-blur-md 
-  shadow-sm hover:shadow-lg 
+  @apply rounded-xl overflow-hidden backdrop-blur-md
+  shadow-sm hover:shadow-lg
   transform hover:scale-[1.02] transition-all duration-300;
 }
 

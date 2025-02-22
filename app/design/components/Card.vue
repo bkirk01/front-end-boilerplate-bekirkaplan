@@ -1,9 +1,15 @@
+<script setup lang="ts">
+defineProps<{
+  className?: string
+  to?: string
+}>()
+</script>
+
 <template>
   <component
     :is="to ? NuxtLink : 'div'"
     :to="to"
-    :class="[
-      'overflow-hidden rounded-xl bg-white shadow-sm hover:shadow-lg transition-all duration-300',
+    class="overflow-hidden rounded-xl bg-white shadow-sm hover:shadow-lg transition-all duration-300" :class="[
       to ? 'hover:scale-[1.02]' : '',
       className,
     ]"
@@ -17,10 +23,3 @@
     </div>
   </component>
 </template>
-
-<script setup lang="ts">
-defineProps<{
-  className?: string;
-  to?: string;
-}>();
-</script>

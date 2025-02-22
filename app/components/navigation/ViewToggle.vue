@@ -1,3 +1,17 @@
+<script setup lang="ts">
+const props = defineProps<{
+  view: 'grid' | 'list'
+}>()
+
+const emit = defineEmits<{
+  (e: 'update:view', value: 'grid' | 'list'): void
+}>()
+
+function toggleView() {
+  emit('update:view', props.view === 'grid' ? 'list' : 'grid')
+}
+</script>
+
 <template>
   <div class="view-toggle">
     <UButton color="gray" variant="ghost" class="toggle-button" @click="toggleView">
@@ -9,20 +23,6 @@
     </UButton>
   </div>
 </template>
-
-<script setup lang="ts">
-const props = defineProps<{
-  view: 'grid' | 'list';
-}>();
-
-const emit = defineEmits<{
-  (e: 'update:view', value: 'grid' | 'list'): void;
-}>();
-
-function toggleView() {
-  emit('update:view', props.view === 'grid' ? 'list' : 'grid');
-}
-</script>
 
 <style scoped>
 .view-toggle {

@@ -1,5 +1,5 @@
 // Import commands.js using ES2015 syntax:
-import './support/commands';
+import './support/commands'
 
 declare global {
   namespace Cypress {
