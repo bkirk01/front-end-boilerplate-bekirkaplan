@@ -1,27 +1,26 @@
 <script setup lang="ts">
-defineProps<{
-  value: number
-  max: number
-  color?: keyof typeof colors
-}>()
+import type { TGenColorKeyTypes } from '~/types/common'
+import { IGenBedgeColorsScheme } from '~/constants'
 
-const colors = {
-  gray: 'bg-gray-600',
-  red: 'bg-red-600',
-  yellow: 'bg-yellow-600',
-  green: 'bg-green-600',
-  blue: 'bg-blue-600',
-  indigo: 'bg-indigo-600',
-  purple: 'bg-purple-600',
-  pink: 'bg-pink-600',
-}
+withDefaults(
+  defineProps<{
+    value: number
+    max: number
+    color: TGenColorKeyTypes
+  }>(),
+  {
+    value: 0, // Default value
+    max: 100, // Default max value
+    color: 'gray', // Default color (change as per your colors object)
+  },
+)
 </script>
 
 <template>
   <div class="w-full">
     <div class="h-2 w-full overflow-hidden rounded-full bg-gray-200">
       <div
-        class="h-2 rounded-full transition-all" :class="[colors[color]]"
+        class="h-2 rounded-full transition-all" :class="[IGenBedgeColorsScheme[color]]"
         :style="{ width: `${(value / max) * 100}%` }"
       />
     </div>

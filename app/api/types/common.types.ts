@@ -1,3 +1,5 @@
+import type { TGenColorKeyTypes } from '~/types/common'
+
 export interface ICBaseCardItem {
   id: string | number
   name: string
@@ -17,7 +19,7 @@ export interface ICBaseCardDetailItem extends ICBaseCardItem {
     name: string
     value: number
     max: number
-    color: string
+    color: TGenColorKeyTypes
   }[]
   list?: {
     title: string

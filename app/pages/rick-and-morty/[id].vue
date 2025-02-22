@@ -1,18 +1,19 @@
 <script setup lang="ts">
-import DetailView from '~/components/DetailView.vue';
-import { useDetailFetcher } from '~/composables/useDetailFetcher';
-import { useRoute } from '#app';
-import { ERoutePaths } from '~/store/view';
+import { useRoute } from '#app'
+import { useRickAndMortyApi } from '~/api/composables/useRickAndMortyApi'
+import DetailView from '~/components/DetailView.vue'
 
 // Get route params
-const route = useRoute();
-const id = route.params.id as string;
-const section = route.path.includes('pokemon') ? ERoutePaths.POKEMON : ERoutePaths.RICKMORTY;
+const route = useRoute()
+const id = route.params.id as string
+const { loading, error, refMappedCharacter, getCharacterById } = useRickAndMortyApi()
 
-// Fetch data using the new composable
-const itemData = await useDetailFetcher(section, id);
+await getCharacterById(Number(id))
 </script>
 
 <template>
-  <DetailView :itemDetailSpecifications="itemData" />
+  <div>
+    <BackgroundsRickAndMortyWallpaperBackground />
+    <DetailView :loading-ref="loading" :on-error="error" :item-detail-specifications="refMappedCharacter" error-message="Rick & Morty" />
+  </div>
 </template>

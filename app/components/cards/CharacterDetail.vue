@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useViewStore } from '~/store/view'
-import { ERoutePaths, type TCItemDetailType } from '~/types/common';
+import { ERoutePaths, type TCItemDetailType } from '~/types/common'
 
 defineProps<{
   data?: TCItemDetailType

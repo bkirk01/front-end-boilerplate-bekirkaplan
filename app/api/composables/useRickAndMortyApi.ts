@@ -20,7 +20,7 @@ export function useRickAndMortyApi() {
 
   const getCharacters = async (
     limit = 20,
-    offset = 0,
+    pageNumber = 0,
     cache = new Map(),
   ): Promise<boolean> => {
     if (loading.value)
@@ -29,30 +29,24 @@ export function useRickAndMortyApi() {
     error.value = null
 
     if (!Number.isInteger(limit) || limit <= 0) {
-      throw new Error(
-        'Invalid itemsPerPage value. It must be a positive integer.',
-      )
+      throw new Error('Invalid itemsPerPage value. It must be a positive integer.')
     }
-    if (!Number.isInteger(offset) || offset < 0) {
-      throw new Error(
-        'Invalid offset value. It must be a non-negative integer.',
-      )
+    if (!Number.isInteger(pageNumber) || pageNumber < 0) {
+      throw new Error('Invalid pageNumber value. It must be a non-negative integer.')
     }
 
-    const cacheKey = `${limit}-${offset}`
-
+    const cacheKey = `${limit}-${pageNumber}`
     if (cache.has(cacheKey)) {
       loading.value = false
       refMappedCharacters.value = cache.get(cacheKey).characters
       return true
     }
 
-    const defaultApiPageSize = 20 // The API returns 20 items per page by default
-    const startPage = Math.floor(offset / defaultApiPageSize) + 1
-    const endPage = Math.ceil((offset + limit) / defaultApiPageSize)
+    const defaultApiPageSize = 20
+    const startPage = Math.floor((pageNumber * limit) / defaultApiPageSize) + 1
+    const endPage = Math.floor(((pageNumber + 1) * limit - 1) / defaultApiPageSize) + 1
 
     try {
-      // Fetch required pages in parallel
       const fetchPromises = []
       for (let page = startPage; page <= endPage; page++) {
         if (Number.isNaN(page) || page <= 0) {
@@ -61,9 +55,7 @@ export function useRickAndMortyApi() {
         fetchPromises.push(
           fetch(`${baseUrl}/character?page=${page}`).then((res) => {
             if (!res.ok) {
-              throw new Error(
-                `Failed to fetch page ${page}: ${res.statusText}`,
-              )
+              throw new Error(`Failed to fetch page ${page}: ${res.statusText}`)
             }
             return res.json()
           }),
@@ -79,19 +71,15 @@ export function useRickAndMortyApi() {
         throw new Error('Failed to fetch any character data.')
       }
 
-      const combinedResults = fulfilledResults.flatMap(
-        res => res.results || [],
-      ) as ICharacterBaseCardSpecifications[]
-
+      const combinedResults = fulfilledResults.flatMap(res => res.results || [])
       const totalCount = fulfilledResults[0]?.info?.count ?? 0
       const totalPages = Math.ceil(totalCount / limit)
       totalPage.value = totalPages
 
-      const startSlice = offset * defaultApiPageSize
-      const endSlice = startSlice + limit
-
+      // ✅ Correct slicing: based on pageNumber and limit
+      const startSlice = (pageNumber * limit) % defaultApiPageSize
       const mappedCharacters = await Promise.all(
-        combinedResults.slice(startSlice, endSlice).map(mapCharacterToBaseItem),
+        combinedResults.slice(startSlice, startSlice + limit).map(mapCharacterToBaseItem),
       )
 
       const result = { totalPages, characters: mappedCharacters }

@@ -1,18 +1,19 @@
 <script setup lang="ts">
-import DetailView from '~/components/DetailView.vue';
-import { useDetailFetcher } from '~/composables/useDetailFetcher';
-import { useRoute } from '#app';
-import { ERoutePaths } from '~/store/view';
+import { useRoute } from '#app'
+import { usePokemonApi } from '~/api/composables/usePokemonApi'
+import DetailView from '~/components/DetailView.vue'
 
 // Get route params
-const route = useRoute();
-const id = route.params.id as string;
-const section = route.path.includes('pokemon') ? ERoutePaths.POKEMON : ERoutePaths.RICKMORTY;
+const route = useRoute()
+const id = route.params.id as string
+const { loading, error, refMappedPokemon, getPokemonById } = usePokemonApi()
 
-// Fetch data using the new composable
-const itemData = await useDetailFetcher(section, id);
+await getPokemonById(Number(id))
 </script>
 
 <template>
-  <DetailView :itemDetailSpecifications="itemData" />
+  <div>
+    <BackgroundsPokemonWallpaperBackground />
+    <DetailView :loading-ref="loading" :on-error="error" :item-detail-specifications="refMappedPokemon" error-message="Pokémon" />
+  </div>
 </template>

@@ -1,46 +1,29 @@
 <script setup lang="ts">
-import { CardsCharacterDetail } from "#components";
-import { usePokemonApi } from "~/api/composables/usePokemonApi";
-import { useRickAndMortyApi } from "~/api/composables/useRickAndMortyApi";
-import { useViewStore } from "~/store/view";
-import "~/assets/css/views/detail.css";
-import { ERoutePaths, type TCItemDetailType } from "~/types/common";
-
-const viewStore = useViewStore();
-const isPokemon = viewStore.selectedView === ERoutePaths.POKEMON;
+import type { TCItemDetailType } from '~/types/common'
+import { CardsCharacterDetail } from '#components'
+import '~/assets/css/views/detail.css'
 
 const props = defineProps<{
-  itemDetailSpecifications: TCItemDetailType;
-}>();
-
-const { loading: pokemonLoading, error: pokemonError } = usePokemonApi();
-
-const { loading: characterLoading, error: characterError } =
-  useRickAndMortyApi();
+  itemDetailSpecifications: TCItemDetailType
+  loadingRef: boolean
+  onError: string | null
+  errorMessage: string
+}>()
 </script>
 
 <template>
   <div>
-    <!-- Wallpaper Background -->
-    <backgrounds-pokemon-wallpaper-background v-if="isPokemon" />
-    <backgrounds-rick-and-morty-wallpaper-background v-else />
-
-    <!-- Loading Overlay -->
-    <UiLoadingOverlay v-if="pokemonLoading || characterLoading" />
-
     <!-- Content -->
     <div class="detail-container">
       <CardsCharacterDetail
         :data="props.itemDetailSpecifications"
-        :loading="pokemonLoading || characterLoading"
+        :loading="loadingRef"
         :error="
-          pokemonError || characterError
+          onError
             ? {
-                title: 'Error',
-                message: `${
-                  viewStore.selectedView === 'pokemon' ? 'Pokémon' : 'Character'
-                } not found`,
-              }
+              title: 'Error',
+              message: `${errorMessage} not found`,
+            }
             : undefined
         "
         image-class="h-64"
