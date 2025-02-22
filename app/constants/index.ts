@@ -16,7 +16,7 @@ export const ICAHARACTER_COLORS: Record<string, string> = {
   ground: 'amber',
   flying: 'indigo',
   psychic: 'pink',
-  bug: 'stone', // Changed from 'lime' to 'stone' for brown colors
+  bug: 'stone',
   rock: 'zinc',
   ghost: 'violet',
   dragon: 'rose',
@@ -38,7 +38,7 @@ export const ICHARACTER_GRADIENTS: Record<string, { from: string, to: string }>
       ground: { from: 'amber-500', to: 'amber-600' },
       flying: { from: 'indigo-500', to: 'indigo-600' },
       psychic: { from: 'pink-500', to: 'pink-600' },
-      bug: { from: 'stone-500', to: 'stone-600' }, // Changed from 'lime' to 'stone' for brown colors
+      bug: { from: 'stone-500', to: 'stone-600' },
       rock: { from: 'zinc-500', to: 'zinc-600' },
       ghost: { from: 'violet-500', to: 'violet-600' },
       dragon: { from: 'rose-500', to: 'rose-600' },
@@ -47,7 +47,7 @@ export const ICHARACTER_GRADIENTS: Record<string, { from: string, to: string }>
       fairy: { from: 'fuchsia-500', to: 'fuchsia-600' },
     }
 
-export const IGenBedgeColorsScheme: Record<TGenColorKeyTypes, string> = {
+export const IGEN_BADGE_COLOR_SCHEME: Record<TGenColorKeyTypes, string> = {
   gray: 'bg-gray-50/80 text-gray-800 ring-gray-500/20',
   red: 'bg-red-50/80 text-red-800 ring-red-500/20',
   yellow: 'bg-yellow-50/80 text-yellow-800 ring-yellow-500/20',

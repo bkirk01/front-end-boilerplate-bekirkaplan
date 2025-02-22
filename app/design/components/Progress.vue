@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { TGenColorKeyTypes } from '~/types/common'
-import { IGenBedgeColorsScheme } from '~/constants'
+import { IGEN_BADGE_COLOR_SCHEME } from '~/constants'
 
 withDefaults(
   defineProps<{
@@ -20,7 +20,7 @@ withDefaults(
   <div class="w-full">
     <div class="h-2 w-full overflow-hidden rounded-full bg-gray-200">
       <div
-        class="h-2 rounded-full transition-all" :class="[IGenBedgeColorsScheme[color]]"
+        class="h-2 rounded-full transition-all" :class="[IGEN_BADGE_COLOR_SCHEME[color]]"
         :style="{ width: `${(value / max) * 100}%` }"
       />
     </div>

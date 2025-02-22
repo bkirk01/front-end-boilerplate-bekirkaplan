@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { TGenColorKeyTypes } from '~/types/common'
+
 const props = defineProps<{
   image: string
   title: string
@@ -33,7 +35,7 @@ const props = defineProps<{
           <DBadge
             v-for="badge in badges"
             :key="badge.text"
-            :color="badge.color"
+            :color="badge.color as TGenColorKeyTypes"
             style="padding: 0.5rem 1rem"
           >
             {{ badge.text }}
