@@ -1,29 +1,32 @@
+import type { ICharacterBaseCardSpecifications } from "~/api/types/character.types"
+import type { IPokemonBaseCardSpecifications } from "~/api/types/pokemon.types"
+
 interface BaseItem {
-  id: string | number;
-  name: string;
-  image: string;
-  details: string[];
+  id: string | number
+  name: string
+  image: string
+  details: string[]
 }
 
 interface DetailItem extends BaseItem {
   badges?: {
-    text: string;
-    color: string;
-  }[];
+    text: string
+    color: string
+  }[]
   info: {
-    label: string;
-    value: string | number;
-  }[];
+    label: string
+    value: string | number
+  }[]
   stats?: {
-    name: string;
-    value: number;
-    max: number;
-    color: string;
-  }[];
+    name: string
+    value: number
+    max: number
+    color: string
+  }[]
   list?: {
-    title: string;
-    items: string[];
-  };
+    title: string
+    items: string[]
+  }
 }
 
 export const BedgesColorScheme = {
@@ -46,8 +49,13 @@ export const BedgesColorScheme = {
   stone: 'bg-stone-50/80 text-stone-800 ring-stone-500/20',
   fuchsia: 'bg-fuchsia-50/80 text-fuchsia-800 ring-fuchsia-500/20',
   default: 'bg-gray-200/80 text-gray-800 ring-gray-300/40',
-};
+}
 
-type ICBedgesColorScheme = keyof typeof BedgesColorScheme;
+type ICBedgesColorScheme = keyof typeof BedgesColorScheme
 
-export type { BaseItem, DetailItem, ICBedgesColorScheme };
+type TCItemDetailType = IPokemonBaseCardSpecifications | ICharacterBaseCardSpecifications | undefined;
+
+// Generic type for dynamic data
+type TGenType<T> = Ref<T | undefined>;
+
+export type { BaseItem, DetailItem, ICBedgesColorScheme, TCItemDetailType, TGenType }

@@ -1,3 +1,27 @@
+<script setup lang="ts">
+const showButton = ref(false)
+
+function scrollToTop() {
+  if (import.meta.client) {
+    watch(showButton, () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    })
+
+    function checkScroll() {
+      showButton.value = window.scrollY > 500
+    }
+
+    onMounted(() => {
+      window.addEventListener('scroll', checkScroll)
+    })
+
+    onUnmounted(() => {
+      window.removeEventListener('scroll', checkScroll)
+    })
+  }
+}
+</script>
+
 <template>
   <UButton
     v-show="showButton"
@@ -16,27 +40,3 @@
     @click="scrollToTop"
   />
 </template>
-
-<script setup lang="ts">
-const showButton = ref(false);
-
-function scrollToTop() {
-  if (import.meta.client) {
-    watch(showButton, () => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
-
-    function checkScroll() {
-      showButton.value = window.scrollY > 500;
-    }
-
-    onMounted(() => {
-      window.addEventListener("scroll", checkScroll);
-    });
-
-    onUnmounted(() => {
-      window.removeEventListener("scroll", checkScroll);
-    });
-  }
-}
-</script>

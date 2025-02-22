@@ -1,12 +1,11 @@
-
-import { defineStore, createPinia, setActivePinia } from "pinia"
+import { createPinia, defineStore, setActivePinia } from "pinia";
 import { computed, ref } from "vue";
 import PokemonWallpaperBackground from "~/components/backgrounds/PokemonWallpaperBackground.vue";
 import RickAndMortyWallpaperBackground from "~/components/backgrounds/RickAndMortyWallpaperBackground.vue";
+import { useRoute } from "#app";
+const pinia = createPinia();
 
-const pinia = createPinia()
-
-export default { store: setActivePinia(pinia) }
+export default { store: setActivePinia(pinia) };
 
 // Enum for strict type control over view modes
 export enum ViewMode {
@@ -14,7 +13,7 @@ export enum ViewMode {
   LIST = "list",
 }
 
-export enum ESelectedView {
+export enum ERoutePaths {
   RICKMORTY = "rickAndMorty",
   POKEMON = "pokemon",
 }
@@ -27,28 +26,41 @@ export const useViewStore = defineStore(
   () => {
     const selectedView = ref<TSectionType>();
     const background = ref();
-
-    // Computed getters for each section view
-    const rickAndMortyView = computed(() => views.value.rickAndMorty);
-    const pokemonView = computed(() => views.value.pokemon);
-
-    const views = ref<Record<TSectionType, ViewMode>>({
+    const route = useRoute();
+    
+    const listViewMode = ref<Record<TSectionType, ViewMode>>({
       rickAndMorty: ViewMode.GRID,
       pokemon: ViewMode.GRID,
     });
+    // Computed getters for each section view
+    const rickAndMortyView = computed(() => listViewMode.value.rickAndMorty);
+    const pokemonView = computed(() => listViewMode.value.pokemon);
+
+    // Generic toggle action (scales easily for more sections)
+    function toggleView() {
+      const routeName = route.name;
+
+      // Found if params is in our ERoutePaths enum list
+      const foundedRoute: ERoutePaths | undefined = Object.values(
+        ERoutePaths
+      ).find((path) => path === routeName);
+
+      if (foundedRoute) {
+        listViewMode.value[foundedRoute] =
+          listViewMode.value[foundedRoute] === ViewMode.GRID
+            ? ViewMode.LIST
+            : ViewMode.GRID;
+        selectedView.value = foundedRoute;
+      }
+    }
 
     const currentPage = ref<Record<TSectionType, number>>({
       rickAndMorty: 0,
       pokemon: 0,
     });
 
-    // Generic toggle action (scales easily for more sections)
-    function toggleView(section: TSectionType) {
-      views.value[section] =
-        views.value[section] === ViewMode.GRID ? ViewMode.LIST : ViewMode.GRID;
-    }
-
     function setCurrentPage(section: TSectionType, pageNumber: number) {
+      debugger;
       if (selectedView.value) {
         currentPage.value[selectedView.value] = pageNumber;
       }
@@ -63,7 +75,7 @@ export const useViewStore = defineStore(
     }
 
     return {
-      views,
+      listViewMode,
       rickAndMortyView,
       pokemonView,
       selectedView,

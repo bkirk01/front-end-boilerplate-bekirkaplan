@@ -1,6 +1,5 @@
-import { MainClient, PokemonClient } from 'pokenode-ts';
+import { PokemonClient } from 'pokenode-ts'
 
-const apiPokemonClient = new PokemonClient();
-const apiMainPokemonClient = new MainClient();
+const apiPokemonClient = new PokemonClient()
 
-export {apiMainPokemonClient, apiPokemonClient};
+export { apiPokemonClient }

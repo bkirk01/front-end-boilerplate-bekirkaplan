@@ -1,3 +1,14 @@
+<script setup lang="ts">
+defineProps<{
+  modelValue: number
+  total: number
+}>()
+
+defineEmits<{
+  (e: 'update:modelValue', value: number): void
+}>()
+</script>
+
 <template>
   <client-only>
     <div class="fixed-pagination">
@@ -13,26 +24,6 @@
     </div>
   </client-only>
 </template>
-
-<script setup lang="ts">
-const props = defineProps<{
-  modelValue: number;
-  total: number;
-}>();
-
-const emit = defineEmits<{
-  (e: "update:modelValue", value: number): void;
-}>();
-
-if (import.meta.client) {
-  watch(
-    () => props.modelValue,
-    (newValue) => {
-      console.log(`Client-side pagination changed to page ${newValue}`);
-    }
-  );
-}
-</script>
 
 <style scoped>
 .fixed-pagination {

@@ -1,60 +1,59 @@
 <script setup lang="ts">
-import { ESelectedView, useViewStore } from "~/stores/view";
+import { ERoutePaths, useViewStore } from '~/store/view'
 
-const route = useRoute();
-const viewStore = useViewStore();
+const route = useRoute()
+const viewStore = useViewStore()
 
 // Computed properties
 const showViewToggle = computed(() => {
-  return route.path === "/pokemon" || route.path === "/rick-and-morty";
-});
+  return route.name !== '/'
+})
 
 const showBackButton = computed(() => {
-  return route.params.id !== undefined;
-});
+  return route.params.id !== undefined
+})
 
 const parentPath = computed(() => {
-  const pathParts = route.path.split("/");
-  return `/${pathParts[1]}`;
-});
+  const pathParts = route.path.split('/')
+  return `/${pathParts[pathParts.length - 2]}`
+})
 
+// TODO: must be get from centrialized config file for api
 const pageTitle = computed(() => {
-  if (route.path === "/pokemon") {
-    return "Pokémon";
+  if (route.path === '/pokemon') {
+    return 'Pokémon'
   }
-  if (route.path === "/rick-and-morty") {
-    return "Rick & Morty Characters";
+  if (route.path === '/rick-and-morty') {
+    return 'Rick & Morty Characters'
   }
   if (route.params.name) {
-    return route.params.name;
+    return route.params.name
   }
-  return "";
-});
+  return ''
+})
 
+
+// TODO: must be get from centrialized config file for api
 const pageIcon = computed(() => {
-  if (route.path.startsWith("/pokemon")) {
-    return "i-heroicons-sparkles";
+  if (route.params.name === ERoutePaths.POKEMON) {
+    return 'i-heroicons-sparkles'
   }
-  if (route.path.startsWith("/rick-and-morty")) {
-    return "i-heroicons-film";
+  if (route.params.name === ERoutePaths.RICKMORTY) {
+    return 'i-heroicons-film'
   }
-  return "i-heroicons-document";
-});
+  return 'i-heroicons-document'
+})
 
 const view = computed(() => {
-  if (route.path.startsWith("/pokemon")) {
-    return viewStore.pokemonView;
+  if (route.path.startsWith('/pokemon')) {
+    return viewStore.pokemonView
   }
-  return viewStore.rickAndMortyView;
-});
+  return viewStore.rickAndMortyView
+})
 
 // Methods
 function toggleView() {
-  if (viewStore.selectedView === ESelectedView.POKEMON) {
-    viewStore.toggleView("pokemon");
-  } else {
-    viewStore.toggleView("rickAndMorty");
-  }
+  viewStore.toggleView();
 }
 </script>
 
@@ -75,7 +74,9 @@ function toggleView() {
             </NuxtLink>
             <div v-if="pageTitle" class="title-container">
               <UIcon :name="pageIcon" class="title-icon" />
-              <h1 class="title-text">{{ pageTitle }}</h1>
+              <h1 class="title-text">
+                {{ pageTitle }}
+              </h1>
             </div>
           </div>
 

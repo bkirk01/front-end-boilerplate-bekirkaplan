@@ -1,7 +1,7 @@
-import { describe, it, expect, vi } from 'vitest';
-import { mount } from '@vue/test-utils';
-import { createTestingPinia } from '@pinia/testing';
-import SubNavigation from '~/components/SubNavigation.vue';
+import { createTestingPinia } from '@pinia/testing'
+import { mount } from '@vue/test-utils'
+import { describe, expect, it, vi } from 'vitest'
+import SubNavigation from '~/components/SubNavigation.vue'
 
 // Mock the useRoute composable
 vi.mock('#app', () => ({
@@ -9,9 +9,9 @@ vi.mock('#app', () => ({
     path: '/pokemon',
     params: {},
   }),
-}));
+}))
 
-describe('SubNavigation', () => {
+describe('subNavigation', () => {
   const mountComponent = () => {
     return mount(SubNavigation, {
       global: {
@@ -23,32 +23,32 @@ describe('SubNavigation', () => {
           UIcon: true,
         },
       },
-    });
-  };
+    })
+  }
 
   it('shows view toggle on list pages', () => {
-    const wrapper = mountComponent();
-    expect(wrapper.findComponent({ name: 'ViewToggle' }).exists()).toBe(true);
-  });
+    const wrapper = mountComponent()
+    expect(wrapper.findComponent({ name: 'ViewToggle' }).exists()).toBe(true)
+  })
 
   it('shows correct page title', () => {
-    const wrapper = mountComponent();
-    expect(wrapper.find('.title-text').text()).toBe('Pokémon');
-  });
+    const wrapper = mountComponent()
+    expect(wrapper.find('.title-text').text()).toBe('Pokémon')
+  })
 
   it('shows back button on detail pages', async () => {
     // Update mock to simulate detail page
     vi.mocked(useRoute).mockReturnValue({
       path: '/pokemon/1',
       params: { id: '1' },
-    } as any);
+    } as any)
 
-    const wrapper = mountComponent();
-    expect(wrapper.find('.back-button').exists()).toBe(true);
-  });
+    const wrapper = mountComponent()
+    expect(wrapper.find('.back-button').exists()).toBe(true)
+  })
 
   it('shows correct icon based on route', () => {
-    const wrapper = mountComponent();
-    expect(wrapper.find('.title-icon').attributes('name')).toContain('sparkles');
-  });
-});
+    const wrapper = mountComponent()
+    expect(wrapper.find('.title-icon').attributes('name')).toContain('sparkles')
+  })
+})

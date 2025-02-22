@@ -1,62 +1,62 @@
 <script setup lang="ts">
-import { ref, computed } from "vue";
-import confPokemonApp from "~/config/pokemonConfig";
-import confRickMortyApp from "~/config/rickMortyConfig";
-import { ESelectedView, useViewStore } from "~/stores/view";
+import { computed, ref } from 'vue'
+import confPokemonApp from '~/config/pokemonConfig'
+import confRickMortyApp from '~/config/rickMortyConfig'
+import { ERoutePaths, useViewStore } from '~/store/view'
 
 const props = defineProps<{
-  image: string;
-  alt: string;
-  size?: "sm" | "md" | "lg";
-  className?: string;
-  imageClass?: string;
-  fallbackImage?: string; // New prop for fallback image
-}>();
-const viewStore = useViewStore();
+  image: string
+  alt: string
+  size?: 'sm' | 'md' | 'lg'
+  className?: string
+  imageClass?: string
+  fallbackImage?: string // New prop for fallback image
+}>()
+const viewStore = useViewStore()
 
-const currentImage = ref(props.image); // Dynamic image source
+const currentImage = ref(props.image) // Dynamic image source
 
-if(currentImage.value === null) {
-  handleImageError();
+if (currentImage.value === null) {
+  handleImageError()
 }
 
 const sizeClasses = computed(() => {
   switch (props.size) {
-    case "sm":
-      return "avatar-sm";
-    case "md":
-      return "avatar-md";
-    case "lg":
-      return "avatar-lg";
+    case 'sm':
+      return 'avatar-sm'
+    case 'md':
+      return 'avatar-md'
+    case 'lg':
+      return 'avatar-lg'
     default:
-      return "avatar-md";
+      return 'avatar-md'
   }
-});
+})
 
 // ✅ Handle image load error by switching to fallback image
 function handleImageError() {
   if (currentImage.value !== confRickMortyApp.loadingImage && currentImage.value !== confPokemonApp.loadingImage) {
-    currentImage.value =
-      viewStore.selectedView === ESelectedView.RICKMORTY
+    currentImage.value
+      = viewStore.selectedView === ERoutePaths.RICKMORTY
         ? confRickMortyApp.loadingImage
-        : confPokemonApp.loadingImage;
-  } else {
-    console.error('Fallback image failed to load.');
+        : confPokemonApp.loadingImage
+  }
+  else {
+    console.error('Fallback image failed to load.')
   }
 }
-
 </script>
 
 <template>
-  <div :class="['avatar', sizeClasses, className]">
+  <div class="avatar" :class="[sizeClasses, className]">
     <img
       :src="currentImage"
       :alt="alt"
       loading="lazy"
       decoding="async"
-      :class="['avatar-image', imageClass]"
+      class="avatar-image" :class="[imageClass]"
       @error="handleImageError"
-    />
+    >
   </div>
 </template>
 

@@ -1,7 +1,11 @@
-import { nuxt } from '@nuxt/eslint/config'
-import { defineFlatConfig } from 'eslint-define-config'
+// @ts-check
+import antfu from '@antfu/eslint-config'
+import nuxt from './.nuxt/eslint.config.mjs'
 
-export default defineFlatConfig([
-  ...nuxt(),
-  // Add or override rules here
-])
+export default nuxt(
+  antfu(
+    {
+      formatters: true,
+    },
+  ),
+)

@@ -2,34 +2,21 @@
 import { CardsCharacterDetail } from "#components";
 import { usePokemonApi } from "~/api/composables/usePokemonApi";
 import { useRickAndMortyApi } from "~/api/composables/useRickAndMortyApi";
-import { ESelectedView, useViewStore } from "~/stores/view";
+import { ERoutePaths, useViewStore } from "~/store/view";
 import "~/assets/css/views/detail.css";
-
-const route = useRoute();
-const id = route.params.id as string;
+import type { TCItemDetailType, TGenType } from "~/types/common";
 
 const viewStore = useViewStore();
-const isPokemon = viewStore.selectedView === ESelectedView.POKEMON;
+const isPokemon = viewStore.selectedView === ERoutePaths.POKEMON;
 
-const {
-  getPokemonById,
-  refMappedPokemon,
-  loading: pokemonLoading,
-  error: pokemonError,
-} = usePokemonApi();
+const props = defineProps<{
+  itemDetailSpecifications: TCItemDetailType;
+}>();
 
-const {
-  getCharacterById,
-  refMappedCharacter,
-  loading: characterLoading,
-  error: characterError,
-} = useRickAndMortyApi();
+const { loading: pokemonLoading, error: pokemonError } = usePokemonApi();
 
-// Fetch data based on the type
-await (isPokemon ? getPokemonById(Number(id)) : getCharacterById(Number(id)));
-
-// Map the response to the correct format based on the type
-const itemData = isPokemon ? refMappedPokemon.value : refMappedCharacter.value;
+const { loading: characterLoading, error: characterError } =
+  useRickAndMortyApi();
 </script>
 
 <template>
@@ -44,13 +31,15 @@ const itemData = isPokemon ? refMappedPokemon.value : refMappedCharacter.value;
     <!-- Content -->
     <div class="detail-container">
       <CardsCharacterDetail
-        :data="itemData"
+        :data="props.itemDetailSpecifications"
         :loading="pokemonLoading || characterLoading"
         :error="
           pokemonError || characterError
             ? {
                 title: 'Error',
-                message: `${viewStore.selectedView === 'pokemon' ? 'Pokémon' : 'Character'} not found`,
+                message: `${
+                  viewStore.selectedView === 'pokemon' ? 'Pokémon' : 'Character'
+                } not found`,
               }
             : undefined
         "
