@@ -1,31 +1,31 @@
 <script setup lang="ts">
-import { useRickAndMortyApi } from "~/api/composables/useRickAndMortyApi";
-import { useClientSideHandlers } from "~/composables/clientSide/useClientSideHandler";
-import { useViewStore } from "~/store/view";
-import { ERoutePaths } from "~/types/common";
+import { useRickAndMortyApi } from '~/api/composables/useRickAndMortyApi'
+import { useClientSideHandlers } from '~/composables/clientSide/useClientSideHandler'
+import { useViewStore } from '~/store/view'
+import { ERoutePaths } from '~/types/common'
 
-const { getCharacters, refMappedCharacters, totalPage, loading } =
-  useRickAndMortyApi();
-const viewStore = useViewStore();
+const { getCharacters, refMappedCharacters, totalPage, loading, characterCache }
+  = useRickAndMortyApi()
+const viewStore = useViewStore()
 
 if (!viewStore) {
-  throw new Error("Pinia store is not initialized.");
+  throw new Error('Pinia store is not initialized.')
 }
 
-const page = ref(1);
-useClientSideHandlers(page, loading, getCharacters);
+const paginationValue = ref(1)
+useClientSideHandlers(paginationValue, loading, getCharacters)
 
-watch(page, (newValue) => {
-  page.value = newValue;
-  viewStore.setPage(ERoutePaths.RICKMORTY);
-  getCharacters(20, page.value - 1);
-});
+const rickMortyCache = new Map();
+watch(paginationValue, () => {
+  viewStore.setPage(ERoutePaths.RICKMORTY)
+  getCharacters(20, paginationValue.value - 1, rickMortyCache)
+})
 
 // Computed view getter/setter
 const view = computed({
   get: () => viewStore.rickAndMortyView,
   set: () => viewStore.toggleView(),
-});
+})
 </script>
 
 <template>
@@ -37,7 +37,7 @@ const view = computed({
       <!-- Loading -->
       <UiLoadingOverlay v-show="loading" />
       <Transition mode="out-in" name="page">
-        <div :key="`page-${page}`" class="page-content">
+        <div :key="`page-${paginationValue}`" class="page-content">
           <div :class="[view === 'grid' ? 'grid-container' : 'list-container']">
             <template v-if="view === 'grid'">
               <CardsGridCard
@@ -68,13 +68,13 @@ const view = computed({
 
     <!-- Conditionally render pagination after data load -->
     <client-only>
-      <UiFixedPagination v-model="page" :total="totalPage" />
+      <UiFixedPagination v-model="paginationValue" :total="totalPage" />
       <UiScrollToTop />
     </client-only>
   </div>
 </template>
 
 <style>
-@import "~/assets/css/views/grid.css";
-@import "~/assets/css/views/list.css";
+@import '~/assets/css/views/grid.css';
+@import '~/assets/css/views/list.css';
 </style>

@@ -1,20 +1,19 @@
 <script setup lang="ts">
+import type { TGenColorKeyTypes } from '~/types/common'
+import { IGenBedgeColorsScheme } from '~/constants'
+
 withDefaults(
   defineProps<{
-    value: number;
-    max: number;
-    color: TGenColorKeyTypes;
+    value: number
+    max: number
+    color: TGenColorKeyTypes
   }>(),
   {
-    value: 0,           // Default value
-    max: 100,           // Default max value
-    color: 'gray',      // Default color (change as per your colors object)
-  }
-);
-
-import type { TGenColorKeyTypes } from '~/types/common';
-import { IGenBedgeColorsScheme } from '~/types/common';
-
+    value: 0, // Default value
+    max: 100, // Default max value
+    color: 'gray', // Default color (change as per your colors object)
+  },
+)
 </script>
 
 <template>

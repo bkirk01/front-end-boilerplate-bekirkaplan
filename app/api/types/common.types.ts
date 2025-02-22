@@ -1,4 +1,4 @@
-import type { TGenColorKeyTypes } from "~/types/common"
+import type { TGenColorKeyTypes } from '~/types/common'
 
 export interface ICBaseCardItem {
   id: string | number

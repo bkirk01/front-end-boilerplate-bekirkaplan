@@ -33,7 +33,6 @@ const pageTitle = computed(() => {
   return ''
 })
 
-
 // TODO: must be get from centrialized config file for api
 const pageIcon = computed(() => {
   if (route.params.name === ERoutePaths.POKEMON) {
@@ -51,7 +50,6 @@ const view = computed(() => {
   }
   return viewStore.rickAndMortyView
 })
-
 </script>
 
 <template>
