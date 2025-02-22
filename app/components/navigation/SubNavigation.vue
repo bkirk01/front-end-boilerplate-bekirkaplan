@@ -21,13 +21,13 @@ const parentPath = computed(() => {
 
 // TODO: must be get from centrialized config file for api
 const pageTitle = computed(() => {
-  if (route.params.name === ERoutePaths.POKEMON) {
+  if (route.name === ERoutePaths.POKEMON) {
     return 'Pokémon'
   }
-  if (route.params.name === ERoutePaths.RICKMORTY) {
+  if (route.name === ERoutePaths.RICKMORTY) {
     return 'Rick & Morty Characters'
   }
-  if (route.params.name) {
+  if (route.name) {
     return route.params.name
   }
   return ''
@@ -35,10 +35,10 @@ const pageTitle = computed(() => {
 
 // TODO: must be get from centrialized config file for api
 const pageIcon = computed(() => {
-  if (route.params.name === ERoutePaths.POKEMON) {
+  if (route.name === ERoutePaths.POKEMON) {
     return 'i-heroicons-sparkles'
   }
-  if (route.params.name === ERoutePaths.RICKMORTY) {
+  if (route.name === ERoutePaths.RICKMORTY) {
     return 'i-heroicons-film'
   }
   return 'i-heroicons-document'

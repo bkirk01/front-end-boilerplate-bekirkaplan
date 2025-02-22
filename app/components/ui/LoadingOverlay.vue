@@ -5,7 +5,7 @@ import confRickMortyApp from '~/config/rickMortyConfig'
 const route = useRoute()
 const isPokemon = computed(() => route.path.includes('/pokemon'))
 
-const loadingImage = computed(() => (isPokemon.value ? confPokemonApp.loadingImage : confRickMortyApp.loadingImage))
+const loadingImage = computed(() => (isPokemon.value ? confPokemonApp.mainLoadAnimationImage : confRickMortyApp.loadingImage))
 </script>
 
 <template>

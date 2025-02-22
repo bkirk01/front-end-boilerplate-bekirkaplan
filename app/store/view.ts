@@ -20,6 +20,7 @@ export const useViewStore = defineStore(
       [ERoutePaths.RICKMORTY]: EGenViewMode.GRID,
       [ERoutePaths.POKEMON]: EGenViewMode.GRID,
     })
+
     // Computed getters for each section view
     const rickAndMortyView = computed(() => listViewMode.value[ERoutePaths.RICKMORTY])
     const pokemonView = computed(() => listViewMode.value[ERoutePaths.POKEMON])

@@ -9,5 +9,5 @@ const images = [
 </script>
 
 <template>
-  <backgrounds-wallpaper-background :images="images" overlay-class="bg-black/60" />
+  <backgrounds-wallpaper-background :images="images" overlay-class="bg-black/30" />
 </template>

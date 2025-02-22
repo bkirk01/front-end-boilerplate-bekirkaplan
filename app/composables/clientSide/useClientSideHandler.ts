@@ -4,18 +4,18 @@ import { onMounted, type Ref, watch } from 'vue'
 export function useClientSideHandlers(
   page: Ref<number>,
   isAnimating: Ref<boolean>,
-  refresh: () => void,
+  refresh: () => Promise<void>, // Support async refresh
 ) {
   if (import.meta.client) {
-    const debouncedFetch = useDebounceFn(() => refresh(), 300)
+    const debouncedFetch = useDebounceFn(async () => await refresh(), 300)
 
     onMounted(() => {
-      watchEffect(() => debouncedFetch())
-      watch(page, () => {
+      watch(page, async () => {
+        await debouncedFetch()
         if (!isAnimating.value) {
           window.scrollTo({ top: 0, behavior: 'smooth' })
         }
-      })
+      }, { immediate: true }) // Initial fetch on mount
     })
   }
 }
