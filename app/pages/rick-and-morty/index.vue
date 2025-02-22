@@ -15,7 +15,7 @@ if (!viewStore) {
 const paginationValue = ref(1)
 useClientSideHandlers(paginationValue, loading, getCharacters)
 
-const rickMortyCache = new Map();
+const rickMortyCache = new Map()
 watch(paginationValue, () => {
   viewStore.setPage(ERoutePaths.RICKMORTY)
   getCharacters(20, paginationValue.value - 1, rickMortyCache)
