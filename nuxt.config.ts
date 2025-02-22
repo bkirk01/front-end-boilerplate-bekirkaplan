@@ -12,17 +12,10 @@ export default defineNuxtConfig({
     'nuxt-api-party',
     '@nuxt/content',
     '@nuxt/image',
-    '@nuxtjs/tailwindcss',
   ],
   ssr: true,
-  content: {},
   ui: {
     global: true,
-  },
-  tailwindcss: {
-    cssPath: '~/assets/css/main.css',
-    configPath: 'tailwind.config',
-    exposeConfig: false,
   },
   pinia: {
     storesDirs: ['~/stores/**'],

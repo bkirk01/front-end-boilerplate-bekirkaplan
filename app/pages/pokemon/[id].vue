@@ -2,10 +2,12 @@
 import { useRoute } from '#app'
 import { usePokemonApi } from '~/api/composables/usePokemonApi'
 import DetailView from '~/components/DetailView.vue'
-
 // Get route params
 const route = useRoute()
-const id = route.params.id as string
+
+const id = computed(() => {
+  return (route.params as { id?: string }).id !== undefined
+})
 const { loading, error, refMappedPokemon, getPokemonById } = usePokemonApi()
 
 await getPokemonById(Number(id))
