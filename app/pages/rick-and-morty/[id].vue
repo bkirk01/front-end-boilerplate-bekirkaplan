@@ -2,7 +2,7 @@
 import DetailView from '~/components/DetailView.vue';
 import { useDetailFetcher } from '~/composables/useDetailFetcher';
 import { useRoute } from '#app';
-import { ERoutePaths } from '~/store/view';
+import { ERoutePaths } from '~/types/common';
 
 // Get route params
 const route = useRoute();

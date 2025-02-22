@@ -25,9 +25,6 @@ const { loading: characterLoading, error: characterError } =
     <backgrounds-pokemon-wallpaper-background v-if="isPokemon" />
     <backgrounds-rick-and-morty-wallpaper-background v-else />
 
-    <!-- Loading Overlay -->
-    <UiLoadingOverlay v-if="pokemonLoading || characterLoading" />
-
     <!-- Content -->
     <div class="detail-container">
       <CardsCharacterDetail
