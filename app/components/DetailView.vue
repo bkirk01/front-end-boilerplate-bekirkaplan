@@ -2,9 +2,9 @@
 import { CardsCharacterDetail } from "#components";
 import { usePokemonApi } from "~/api/composables/usePokemonApi";
 import { useRickAndMortyApi } from "~/api/composables/useRickAndMortyApi";
-import { ERoutePaths, useViewStore } from "~/store/view";
+import { useViewStore } from "~/store/view";
 import "~/assets/css/views/detail.css";
-import type { TCItemDetailType, TGenType } from "~/types/common";
+import { ERoutePaths, type TCItemDetailType } from "~/types/common";
 
 const viewStore = useViewStore();
 const isPokemon = viewStore.selectedView === ERoutePaths.POKEMON;

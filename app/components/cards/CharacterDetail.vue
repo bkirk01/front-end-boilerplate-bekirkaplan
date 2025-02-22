@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ERoutePaths, useViewStore } from '~/store/view'
-import type { TCItemDetailType, TGenType } from '~/types/common';
+import { useViewStore } from '~/store/view'
+import { ERoutePaths, type TCItemDetailType } from '~/types/common';
 
 defineProps<{
   data?: TCItemDetailType
@@ -128,7 +128,7 @@ const isPokemon = computed(
 }
 
 .pokemon-gradient {
-  @apply bg-gradient-to-r from-gray-950 to-blue-800;
+  @apply bg-gradient-to-r from-gray-900 to-blue-800;
 }
 
 .character-gradient {

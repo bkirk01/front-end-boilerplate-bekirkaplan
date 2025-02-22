@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { usePokemonApi } from '~/api'
 import { useClientSideHandlers } from '~/composables/clientSide/useClientSideHandler'
-import { ERoutePaths, useViewStore } from '~/store/view'
+import { useViewStore } from '~/store/view'
 
 const { getPokemons, refMappedPokemons, totalPage, loading } = usePokemonApi()
 const viewStore = useViewStore()
@@ -15,7 +15,6 @@ useClientSideHandlers(page, loading, getPokemons)
 
 watch(page, (newValue) => {
   page.value = newValue
-  viewStore.setPage(ERoutePaths.RICKMORTY)
   getPokemons(20, (page.value - 1) * 20)
 })
 

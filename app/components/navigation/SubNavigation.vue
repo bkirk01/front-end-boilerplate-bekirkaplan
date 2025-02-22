@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ERoutePaths, useViewStore } from '~/store/view'
+import { useViewStore } from '~/store/view'
+import { ERoutePaths } from '~/types/common'
 
 const route = useRoute()
 const viewStore = useViewStore()
@@ -20,10 +21,10 @@ const parentPath = computed(() => {
 
 // TODO: must be get from centrialized config file for api
 const pageTitle = computed(() => {
-  if (route.path === '/pokemon') {
+  if (route.params.name === ERoutePaths.POKEMON) {
     return 'Pokémon'
   }
-  if (route.path === '/rick-and-morty') {
+  if (route.params.name === ERoutePaths.RICKMORTY) {
     return 'Rick & Morty Characters'
   }
   if (route.params.name) {
@@ -51,10 +52,6 @@ const view = computed(() => {
   return viewStore.rickAndMortyView
 })
 
-// Methods
-function toggleView() {
-  viewStore.toggleView();
-}
 </script>
 
 <template>
@@ -84,7 +81,7 @@ function toggleView() {
           <navigation-view-toggle
             v-if="showViewToggle"
             :view="view"
-            @update:view="toggleView"
+            @update:view="viewStore.toggleView"
           />
         </div>
       </div>

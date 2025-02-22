@@ -1,14 +1,14 @@
 import type { ICharacterBaseCardSpecifications } from "~/api/types/character.types"
 import type { IPokemonBaseCardSpecifications } from "~/api/types/pokemon.types"
 
-interface BaseItem {
+export interface BaseItem {
   id: string | number
   name: string
   image: string
   details: string[]
 }
 
-interface DetailItem extends BaseItem {
+export interface DetailItem extends BaseItem {
   badges?: {
     text: string
     color: string
@@ -51,11 +51,23 @@ export const BedgesColorScheme = {
   default: 'bg-gray-200/80 text-gray-800 ring-gray-300/40',
 }
 
-type ICBedgesColorScheme = keyof typeof BedgesColorScheme
+export type ICBedgesColorScheme = keyof typeof BedgesColorScheme
 
-type TCItemDetailType = IPokemonBaseCardSpecifications | ICharacterBaseCardSpecifications | undefined;
+export type TCItemDetailType = IPokemonBaseCardSpecifications | ICharacterBaseCardSpecifications | undefined;
+
+// Enum for strict type control over view modes
+export enum EGenViewMode {
+  GRID = "grid",
+  LIST = "list",
+}
+
+export enum ERoutePaths {
+  RICKMORTY = "rick-and-morty",
+  POKEMON = "pokemon",
+}
+
+// Generic Section Type
+export type TSectionType = ERoutePaths.RICKMORTY | ERoutePaths.POKEMON;
 
 // Generic type for dynamic data
-type TGenType<T> = Ref<T | undefined>;
-
-export type { BaseItem, DetailItem, ICBedgesColorScheme, TCItemDetailType, TGenType }
+export type TGenType<T> = Ref<T | undefined>;

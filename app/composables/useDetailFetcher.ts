@@ -2,8 +2,7 @@
 import { ref, type Ref } from "vue";
 import { usePokemonApi } from "~/api/composables/usePokemonApi";
 import { useRickAndMortyApi } from "~/api/composables/useRickAndMortyApi";
-import { ERoutePaths } from "~/store/view";
-import type { TCItemDetailType, TGenType } from "~/types/common";
+import { ERoutePaths, type TCItemDetailType, type TGenType } from "~/types/common";
 
 export const useDetailFetcher = async (
   section: ERoutePaths,
@@ -12,7 +11,6 @@ export const useDetailFetcher = async (
   const itemData: TGenType<TCItemDetailType> = ref(undefined);
 
   const { getPokemonById, refMappedPokemon } = usePokemonApi();
-
   const { getCharacterById, refMappedCharacter } = useRickAndMortyApi();
 
   // Fetching logic based on section

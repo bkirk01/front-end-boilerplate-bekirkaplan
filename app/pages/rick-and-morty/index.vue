@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { useRickAndMortyApi } from "~/api/composables/useRickAndMortyApi";
 import { useClientSideHandlers } from "~/composables/clientSide/useClientSideHandler";
-import { ERoutePaths, useViewStore } from "~/store/view";
+import { useViewStore } from "~/store/view";
+import { ERoutePaths } from "~/types/common";
 
 const { getCharacters, refMappedCharacters, totalPage, loading } =
   useRickAndMortyApi();
@@ -21,9 +22,10 @@ watch(page, (newValue) => {
 });
 
 // Computed view getter/setter
-const view = computed(() => viewStore.rickAndMortyView);
-
-view.value;
+const view = computed({
+  get: () => viewStore.rickAndMortyView,
+  set: () => viewStore.toggleView(),
+});
 </script>
 
 <template>

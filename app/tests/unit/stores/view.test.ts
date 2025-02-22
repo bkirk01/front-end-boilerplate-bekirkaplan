@@ -15,17 +15,17 @@ describe('view Store', () => {
 
   it('toggles Rick & Morty view', () => {
     const store = useViewStore()
-    store.toggleView('rickAndMorty')
+    store.toggleView()
     expect(store.rickAndMortyView).toBe('list')
-    store.toggleView('rickAndMorty')
+    store.toggleView()
     expect(store.rickAndMortyView).toBe('grid')
   })
 
   it('toggles Pokemon view', () => {
     const store = useViewStore()
-    store.toggleView('pokemon')
+    store.toggleView()
     expect(store.pokemonView).toBe('list')
-    store.toggleView('pokemon')
+    store.toggleView()
     expect(store.pokemonView).toBe('grid')
   })
 })

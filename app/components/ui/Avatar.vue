@@ -2,7 +2,8 @@
 import { computed, ref } from 'vue'
 import confPokemonApp from '~/config/pokemonConfig'
 import confRickMortyApp from '~/config/rickMortyConfig'
-import { ERoutePaths, useViewStore } from '~/store/view'
+import { useViewStore } from '~/store/view'
+import { ERoutePaths } from '~/types/common';
 
 const props = defineProps<{
   image: string

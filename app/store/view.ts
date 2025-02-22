@@ -3,23 +3,12 @@ import { computed, ref } from "vue";
 import PokemonWallpaperBackground from "~/components/backgrounds/PokemonWallpaperBackground.vue";
 import RickAndMortyWallpaperBackground from "~/components/backgrounds/RickAndMortyWallpaperBackground.vue";
 import { useRoute } from "#app";
+import { EGenViewMode, ERoutePaths, type TSectionType } from "~/types/common";
 const pinia = createPinia();
 
 export default { store: setActivePinia(pinia) };
 
-// Enum for strict type control over view modes
-export enum ViewMode {
-  GRID = "grid",
-  LIST = "list",
-}
 
-export enum ERoutePaths {
-  RICKMORTY = "rickAndMorty",
-  POKEMON = "pokemon",
-}
-
-// Generic Section Type
-export type TSectionType = "rickAndMorty" | "pokemon";
 
 export const useViewStore = defineStore(
   "view",
@@ -28,13 +17,13 @@ export const useViewStore = defineStore(
     const background = ref();
     const route = useRoute();
     
-    const listViewMode = ref<Record<TSectionType, ViewMode>>({
-      rickAndMorty: ViewMode.GRID,
-      pokemon: ViewMode.GRID,
+    const listViewMode = ref<Record<TSectionType, EGenViewMode>>({
+      [ERoutePaths.RICKMORTY]: EGenViewMode.GRID,
+      [ERoutePaths.POKEMON]: EGenViewMode.GRID,
     });
     // Computed getters for each section view
-    const rickAndMortyView = computed(() => listViewMode.value.rickAndMorty);
-    const pokemonView = computed(() => listViewMode.value.pokemon);
+    const rickAndMortyView = computed(() => listViewMode.value[ERoutePaths.RICKMORTY]);
+    const pokemonView = computed(() => listViewMode.value[ERoutePaths.POKEMON]);
 
     // Generic toggle action (scales easily for more sections)
     function toggleView() {
@@ -47,20 +36,19 @@ export const useViewStore = defineStore(
 
       if (foundedRoute) {
         listViewMode.value[foundedRoute] =
-          listViewMode.value[foundedRoute] === ViewMode.GRID
-            ? ViewMode.LIST
-            : ViewMode.GRID;
+          listViewMode.value[foundedRoute] === EGenViewMode.GRID
+            ? EGenViewMode.LIST
+            : EGenViewMode.GRID;
         selectedView.value = foundedRoute;
       }
     }
 
     const currentPage = ref<Record<TSectionType, number>>({
-      rickAndMorty: 0,
-      pokemon: 0,
+      [ERoutePaths.RICKMORTY]: 0,
+      [ERoutePaths.POKEMON]: 0,
     });
 
     function setCurrentPage(section: TSectionType, pageNumber: number) {
-      debugger;
       if (selectedView.value) {
         currentPage.value[selectedView.value] = pageNumber;
       }
