@@ -8,8 +8,6 @@ const pinia = createPinia();
 
 export default { store: setActivePinia(pinia) };
 
-
-
 export const useViewStore = defineStore(
   "view",
   () => {

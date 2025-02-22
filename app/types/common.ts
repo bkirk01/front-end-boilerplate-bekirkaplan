@@ -29,7 +29,10 @@ export interface DetailItem extends BaseItem {
   }
 }
 
-export const BedgesColorScheme = {
+
+export type TGenColorKeyTypes =  'gray' | 'red' | 'yellow' |'green' |'blue' |'indigo' |'purple' |'pink' |'orange' |'amber' |'lime' |'sky' |'violet' |'rose' |'slate' |'zinc' |'stone' |'fuchsia' |'default';
+
+export const IGenBedgeColorsScheme: Record<TGenColorKeyTypes, string> = {
   gray: 'bg-gray-50/80 text-gray-800 ring-gray-500/20',
   red: 'bg-red-50/80 text-red-800 ring-red-500/20',
   yellow: 'bg-yellow-50/80 text-yellow-800 ring-yellow-500/20',
@@ -51,7 +54,6 @@ export const BedgesColorScheme = {
   default: 'bg-gray-200/80 text-gray-800 ring-gray-300/40',
 }
 
-export type ICBedgesColorScheme = keyof typeof BedgesColorScheme
 
 export type TCItemDetailType = IPokemonBaseCardSpecifications | ICharacterBaseCardSpecifications | undefined;
 
@@ -68,6 +70,8 @@ export enum ERoutePaths {
 
 // Generic Section Type
 export type TSectionType = ERoutePaths.RICKMORTY | ERoutePaths.POKEMON;
+
+export type TGenBedgeColorValue = `bg-${TGenColorKeyTypes}${any}`;
 
 // Generic type for dynamic data
 export type TGenType<T> = Ref<T | undefined>;
