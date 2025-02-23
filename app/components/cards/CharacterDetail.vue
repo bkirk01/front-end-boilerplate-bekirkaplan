@@ -23,9 +23,7 @@ const isPokemon = computed(
     <div v-else-if="data" class="detail-container">
       <!-- Card Header -->
       <div
-        class="header-container" :class="[
-          isPokemon ? 'pokemon-gradient' : 'character-gradient',
-        ]"
+        class="header-container"
       >
         <div class="header-info">
           <h1 class="title">
@@ -165,7 +163,7 @@ const isPokemon = computed(
 }
 
 .info-item {
-  @apply bg-white/50 rounded-lg p-4 shadow-sm transition-all duration-500 hover:scale-105;
+  @apply bg-white/50 rounded-lg p-4 shadow-sm transition-all duration-500 hover:scale-[1.01];
 }
 
 .info-label,

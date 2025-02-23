@@ -1,5 +1,5 @@
 .list-item-container {
-  @apply list-card transform transition-transform duration-300 hover:scale-105;
+  @apply list-card transform transition-transform duration-300 hover:scale-[1.01];
 }
 
 .list-card {
