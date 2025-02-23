@@ -34,7 +34,7 @@ export interface IAppConfig {
   subNavigationProps?: ISubNavigationConfig
   gridPageConfig?: IGridPageConfig
   listPageConfig?: IListPageConfig
-  mainLoadAnimationImage?: string
+  mainLoadAnimationImage?: string | undefined
 }
 
 export interface IAppConfigs {

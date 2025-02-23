@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useViewStore } from '~/store/view'
 import { ERoutePaths, type TCItemDetailType, type TGenColorKeyTypes } from '~/types/common'
+import { DAlert, DBadge, DProgress } from '..'
 
 defineProps<{
   data?: TCItemDetailType

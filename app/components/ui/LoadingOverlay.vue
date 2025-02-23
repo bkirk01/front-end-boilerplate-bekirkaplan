@@ -1,11 +1,5 @@
 <script setup lang="ts">
-import confPokemonApp from '~/config/pokemonConfig'
-import confRickMortyApp from '~/config/rickMortyConfig'
-
-const route = useRoute()
-const isPokemon = computed(() => route.path.includes('/pokemon'))
-
-const loadingImage = computed(() => (isPokemon.value ? confPokemonApp.mainLoadAnimationImage : confRickMortyApp.loadingImage))
+const appStore = useAppStore()
 </script>
 
 <template>
@@ -14,11 +8,11 @@ const loadingImage = computed(() => (isPokemon.value ? confPokemonApp.mainLoadAn
       <div class="relative bg-white/80 backdrop-blur-sm rounded-lg p-8 shadow-xl">
         <div class="flex flex-col items-center">
           <!-- Loading Animation -->
-          <img :src="loadingImage" alt="Loading..." class="w-24 h-24 object-contain">
+          <img :src="appStore.configuration.mainLoadAnimationImage" alt="Loading..." class="w-24 h-24 object-contain">
 
           <!-- Loading Text -->
           <span class="mt-4 text-sm font-medium text-gray-600">
-            {{ isPokemon ? 'Loading Pokémon...' : 'Loading Characters...' }}
+            {{ `Loading ${appStore.configuration.subNavigationProps?.pageTitle}` }}
           </span>
         </div>
       </div>
