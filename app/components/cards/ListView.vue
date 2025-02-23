@@ -44,10 +44,7 @@ const isClient = import.meta.client
         <template #footer>
           <div class="details-button">
             <span>Details</span>
-            <UIcon
-              name="i-heroicons-arrow-right"
-              class="button-icon"
-            />
+            <UIcon name="i-heroicons-arrow-right" class="button-icon" />
           </div>
         </template>
       </ListItemLayout>

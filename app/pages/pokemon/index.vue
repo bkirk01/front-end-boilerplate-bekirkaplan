@@ -26,8 +26,8 @@ const toggleView = computed({
 </script>
 
 <template>
-  <PagesLayout>
-    <ContentContainer>
+  <ContentContainer>
+    <PagesLayout>
       <!-- Content -->
       <ClientOnly>
         <!-- Loading -->
@@ -60,8 +60,8 @@ const toggleView = computed({
       <!-- Pagination -->
       <UiFixedPagination v-model="paginationValue" :total="totalPage" />
       <UiScrollToTop />
-    </ContentContainer>
-  </PagesLayout>
+    </PagesLayout>
+  </ContentContainer>
 </template>
 
 <style>

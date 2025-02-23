@@ -1,5 +1,5 @@
 <template>
-  <div class="list-card transform transition-transform duration-300 hover:scale-105">
+  <div class="list-item-container">
     <div class="flex">
       <div class="image-container">
         <slot name="avatar" />
