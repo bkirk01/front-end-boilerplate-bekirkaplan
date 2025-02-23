@@ -1,3 +1,7 @@
+.list-item-container {
+  @apply list-card transform transition-transform duration-300 hover:scale-105;
+}
+
 .list-card {
   @apply overflow-hidden backdrop-blur-sm
   shadow-sm hover:shadow-lg transform hover:scale-[1.02]
