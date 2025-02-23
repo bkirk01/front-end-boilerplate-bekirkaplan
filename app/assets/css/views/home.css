@@ -20,9 +20,6 @@
   @apply h-full rounded-xl overflow-hidden shadow-sm hover:shadow-lg transform hover:scale-[1.02] transition-all duration-300 backdrop-blur-md bg-white/30 border border-white/30;
 }
 
-.card-header {
-  @apply relative pb-16;
-}
 
 .header-content {
   @apply absolute inset-0 backdrop-blur-sm p-6;
