@@ -27,7 +27,13 @@ export interface IListPageConfig {
   bgColor: string
 }
 
+export interface IWallpaperConfig {
+  src: string
+  alt: string
+}
+
 export interface IAppConfig {
+  wallpapers?: IWallpaperConfig[]
   containerConfig?: IContainerConfig
   contentContainerConfig?: IContentContainerConfig
   mainNavigationProps?: IMainNavigationConfig

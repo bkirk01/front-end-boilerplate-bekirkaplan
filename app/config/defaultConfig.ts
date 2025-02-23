@@ -1,4 +1,4 @@
-import type { IAppConfig } from './config.types'
+import type { IAppConfig } from '../types/config.types'
 import loadingPokemonImage from '~/assets/animations/loading-animation-pikacu.gif'
 
 export const IDefaultAppConfig: IAppConfig = {

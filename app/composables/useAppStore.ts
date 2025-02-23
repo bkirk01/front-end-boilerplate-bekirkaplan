@@ -1,4 +1,4 @@
-import type { IAppConfig, IAppConfigs } from '~/config/config.types'
+import type { IAppConfig, IAppConfigs } from '~/types/config.types'
 import { useRoute } from 'vue-router'
 import appConfigs from '~/config/appConfig'
 import { IDefaultAppConfig } from '~/config/defaultConfig'

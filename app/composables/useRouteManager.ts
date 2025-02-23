@@ -1,5 +1,6 @@
 // src/composables/useRouteManager.ts
 
+import type { TParams, TypeRouteManager } from '~/types/route.types'
 import { useRoute, useRouter } from 'nuxt/app'
 import { ref, watch } from 'vue'
 
@@ -7,12 +8,14 @@ import { ref, watch } from 'vue'
  * RouteManager provides an abstraction layer for managing routing logic in Nuxt 3.
  * It handles navigation, dynamic parameters, query updates, and guards using Nuxt's useRouter and useRoute.
  */
-export function useRouteManager() {
+export function useRouteManager<T extends TParams = Record<string, any>>(): TypeRouteManager<T> {
   const router = useRouter()
   const route = useRoute()
+
   const currentPath = ref(route.path)
-  const currentParams = ref(route.params)
+  const currentParams = ref<T>(route.params as T)
   const currentQuery = ref(route.query)
+  const isRouteChanging = ref(false)
 
   /**
    * Navigate to a specific path.
@@ -60,15 +63,24 @@ export function useRouteManager() {
     () => route.fullPath,
     (newPath) => {
       currentPath.value = newPath
-      currentParams.value = route.params
+      currentParams.value = route.params as T
       currentQuery.value = route.query
     },
   )
 
+  router.beforeEach(() => {
+    isRouteChanging.value = true
+  })
+
+  router.afterEach(() => {
+    isRouteChanging.value = false
+  })
+
   return {
-    currentPath,
-    currentParams,
-    currentQuery,
+    isRouteChanging: isRouteChanging.value,
+    currentPath: currentPath.value,
+    currentParams: currentParams.value,
+    currentQuery: currentQuery.value,
     navigateTo,
     goBack,
     updateQuery,

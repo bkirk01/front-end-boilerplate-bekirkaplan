@@ -1,14 +1,12 @@
 <script setup lang="ts">
 import { usePokemonApi } from '~/api'
 import { useClientSideHandlers } from '~/composables/clientSide/useClientSideHandler'
-import useAppStore from '~/composables/useAppStore'
-import GridLayout from '~/layouts/ContentContainer.vue'
+import ContentContainer from '~/layouts/ContentContainer.vue'
+import PagesLayout from '~/layouts/PagesLayout.vue'
 import { useViewStore } from '~/store/view'
-import { ERoutePaths } from '~/types/common'
 
 const { getPokemons, refMappedPokemons, totalPage, loading } = usePokemonApi()
 const viewStore = useViewStore()
-const appConfig = useAppStore()
 
 if (!viewStore) {
   throw new Error('Pinia store is not initialized.')
@@ -17,7 +15,6 @@ if (!viewStore) {
 const paginationValue = ref(1)
 
 useClientSideHandlers(paginationValue, loading, async () => {
-  viewStore.setPage(ERoutePaths.POKEMON)
   await getPokemons(20, (paginationValue.value - 1) * 20)
 })
 
@@ -29,17 +26,15 @@ const toggleView = computed({
 </script>
 
 <template>
-  <div>
-    <!-- Background -->
-    <BackgroundsPokemonWallpaperBackground v-if="appConfig.configuration.contentContainerConfig?.showWallPaper" />
-    <!-- Content -->
-    <client-only>
-      <!-- Loading -->
-      <UiLoadingOverlay v-show="loading" />
-      <Transition appear mode="out-in" name="page">
-        <div :key="`page-${paginationValue}`" class="page-content">
-          <template v-if="toggleView === 'grid'">
-            <GridLayout>
+  <PagesLayout>
+    <ContentContainer>
+      <!-- Content -->
+      <ClientOnly>
+        <!-- Loading -->
+        <UiLoadingOverlay v-show="loading" />
+        <Transition appear mode="out-in" name="page">
+          <div :key="`page-${paginationValue}`" class="page-content">
+            <template v-if="toggleView === 'grid'">
               <div class="grid-container">
                 <CardsGridCard
                   v-for="pokemon in refMappedPokemons" :key="pokemon.id" :image="pokemon.image"
@@ -47,26 +42,26 @@ const toggleView = computed({
                   :details-link="`/pokemon/${pokemon.id}`"
                 />
               </div>
-            </GridLayout>
-          </template>
+            </template>
 
-          <template v-else>
-            <div class="list-container">
-              <CardsListView
-                v-for="pokemon in refMappedPokemons" :key="pokemon.id" :image="pokemon.image"
-                :title="pokemon.name" :badges="pokemon.badges" :type="pokemon.type"
-                :details-link="`/pokemon/${pokemon.id}`"
-              />
-            </div>
-          </template>
-        </div>
-      </Transition>
-    </client-only>
+            <template v-else>
+              <div class="list-container">
+                <CardsListView
+                  v-for="pokemon in refMappedPokemons" :key="pokemon.id" :image="pokemon.image"
+                  :title="pokemon.name" :badges="pokemon.badges" :type="pokemon.type"
+                  :details-link="`/pokemon/${pokemon.id}`"
+                />
+              </div>
+            </template>
+          </div>
+        </Transition>
+      </ClientOnly>
 
-    <!-- Pagination -->
-    <UiFixedPagination v-model="paginationValue" :total="totalPage" />
-    <UiScrollToTop />
-  </div>
+      <!-- Pagination -->
+      <UiFixedPagination v-model="paginationValue" :total="totalPage" />
+      <UiScrollToTop />
+    </ContentContainer>
+  </PagesLayout>
 </template>
 
 <style>
