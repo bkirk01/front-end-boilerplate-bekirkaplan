@@ -5,7 +5,7 @@ import { useViewStore } from '~/store/view'
 import { ERoutePaths } from '~/types/common'
 
 const props = defineProps<{
-  image: string
+  image: string | undefined
   alt: string
   size?: 'sm' | 'md' | 'lg'
   className?: string
@@ -33,12 +33,12 @@ const sizeClasses = computed(() => {
   }
 })
 
-// ✅ Handle image load error by switching to fallback image
+// Handle image load error by switching to fallback image
 function handleImageError() {
-  if (currentImage.value !== confRickMortyApp.loadingImage && currentImage.value !== confPokemonApp.mainLoadAnimationImage) {
+  if (currentImage.value !== confRickMortyApp.mainLoadAnimationImage && currentImage.value !== confPokemonApp.mainLoadAnimationImage) {
     currentImage.value
       = viewStore.selectedView === ERoutePaths.RICKMORTY
-        ? confRickMortyApp.loadingImage
+        ? confRickMortyApp.mainLoadAnimationImage
         : confPokemonApp.mainLoadAnimationImage
   }
   else {

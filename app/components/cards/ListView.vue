@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { TGenColorKeyTypes } from '~/types/common'
 import { NuxtLink } from '#components'
+import { DBadge } from '..'
 
 defineProps<{
   image: string

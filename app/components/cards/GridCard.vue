@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { TGenColorKeyTypes } from '~/types/common'
+import { DBadge } from '..'
 
 const props = defineProps<{
   image: string
