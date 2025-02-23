@@ -13,10 +13,11 @@ if (!viewStore) {
 
 const paginationValue = ref(1)
 const { getCharacters, refMappedCharacters, totalPage, loading } = useRickAndMortyApi()
+const cache = new Map()
 
 // Simplified handler: Auto-fetches & scrolls on page change
 useClientSideHandlers(paginationValue, loading, async () => {
-  await getCharacters(20, paginationValue.value - 1)
+  await getCharacters(20, paginationValue.value - 1, cache)
 })
 
 // Computed view getter/setter
