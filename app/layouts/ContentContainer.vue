@@ -7,6 +7,7 @@ const { configuration } = useAppStore()
 
 <template>
   <div :class="`${configuration?.contentContainerConfig?.bgColor}`">
+    <NavigationSubNavigation />
     <WallpaperBackground v-if="configuration.contentContainerConfig?.showWallPaper" />
     <slot />
   </div>

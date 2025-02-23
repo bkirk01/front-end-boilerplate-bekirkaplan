@@ -1,0 +1,28 @@
+.card-layout-container {
+  @apply rounded-xl shadow-sm overflow-hidden backdrop-blur-sm transition-transform duration-300 hover:scale-105;
+}
+
+.card-avatar {
+    @apply relative -mt-32 flex justify-center;
+}
+
+.card-body {
+    @apply px-4 py-4 flex flex-col items-center;
+}
+
+.card-footer {
+    @apply px-4 py-4 flex justify-between flex-col items-center;
+}
+
+.avatar-container {
+  @apply relative -mt-16 flex justify-center;
+}
+
+.footer-container {
+  @apply px-4 py-4 flex flex-col items-center;
+}
+
+.card-header {
+    @apply relative pb-16;
+  }
+  
