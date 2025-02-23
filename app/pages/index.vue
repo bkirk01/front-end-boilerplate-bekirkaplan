@@ -1,7 +1,3 @@
-<script setup lang="ts">
-import '~/assets/css/views/home.css'
-</script>
-
 <template>
   <!-- Content -->
   <div class="hero-container">
@@ -58,3 +54,7 @@ import '~/assets/css/views/home.css'
     </div>
   </div>
 </template>
+
+<style scoped>
+@import '../assets/css/views/home.css';
+</style>

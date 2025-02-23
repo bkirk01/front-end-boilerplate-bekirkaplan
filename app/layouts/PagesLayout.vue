@@ -4,6 +4,6 @@
   </div>
 </template>
 
-<style>
+<style scoped>
 @import '../assets/css/layouts/pages-layout.css';
 </style>

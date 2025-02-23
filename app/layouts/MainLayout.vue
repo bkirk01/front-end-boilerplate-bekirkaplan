@@ -16,7 +16,7 @@ const { isRouteChanging } = useRouteManager()
   </div>
 </template>
 
-<style>
+<style scoped>
 main {
   transition: padding-top 0.3s ease;
 }

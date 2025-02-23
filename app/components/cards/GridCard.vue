@@ -44,9 +44,14 @@ const props = defineProps<{
     </template>
 
     <template #footer>
-      <UiBaseButton :color="props.type || 'gray'" variant="solid" block trailing icon="i-heroicons-arrow-right">
-        View Details
-      </UiBaseButton>
+      <NuxtLink :to="detailsLink" class="block">
+        <UiBaseButton
+          :color="props.type || 'gray'" variant="solid" block trailing
+          icon="i-heroicons-arrow-right"
+        >
+          View Details
+        </UiBaseButton>
+      </NuxtLink>
     </template>
   </CardLayout>
 </template>

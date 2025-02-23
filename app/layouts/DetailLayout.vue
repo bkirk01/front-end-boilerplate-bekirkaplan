@@ -1,5 +1,9 @@
 <template>
-  <div class="min-h-screen">
+  <div class="detail-layout-container">
     <slot />
   </div>
 </template>
+
+<style scoped>
+@import '../assets/css/layouts/detail-layout.css';
+</style>
