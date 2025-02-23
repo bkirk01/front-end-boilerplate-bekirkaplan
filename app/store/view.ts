@@ -1,8 +1,6 @@
 import { useRoute } from '#app'
 import { createPinia, defineStore, setActivePinia } from 'pinia'
 import { computed, ref } from 'vue'
-import PokemonWallpaperBackground from '~/components/backgrounds/PokemonWallpaperBackground.vue'
-import RickAndMortyWallpaperBackground from '~/components/backgrounds/RickAndMortyWallpaperBackground.vue'
 import { EGenViewMode, ERoutePaths, type TSectionType } from '~/types/common'
 
 const pinia = createPinia()
@@ -54,14 +52,6 @@ export const useViewStore = defineStore(
       }
     }
 
-    // Generic toggle action (scales easily for more sections)
-    function setPage(section: TSectionType) {
-      selectedView.value = section
-      background.value = selectedView.value
-        ? PokemonWallpaperBackground
-        : RickAndMortyWallpaperBackground
-    }
-
     return {
       listViewMode,
       rickAndMortyView,
@@ -70,7 +60,6 @@ export const useViewStore = defineStore(
       background,
       setCurrentPage,
       toggleView,
-      setPage,
     }
   },
   { persist: true },

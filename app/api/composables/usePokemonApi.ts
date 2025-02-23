@@ -1,6 +1,6 @@
 import type { IPokemonBaseCardSpecifications } from '~/api/types/pokemon.types'
 import { ref } from 'vue'
-import { apiPokemonClient } from '~/api/config/axiosPokemon'
+import { apiPokemonClient } from '~/api/config/pokemonApi'
 import { mapPokemonToBaseItem, mapPokemonToDetailItem } from '~/api/mappers/pokemon.mapper'
 
 /**
