@@ -1,7 +1,7 @@
 import type { NamedAPIResource, Pokemon } from 'pokenode-ts'
 import type { ICBaseCardDetailItem } from '~/api/types/common.types'
 import type { IPokemonBaseCardSpecifications } from '~/api/types/pokemon.types'
-import { apiPokemonClient } from '~/api/config/axiosPokemon'
+import { apiPokemonClient } from '~/api/config/pokemonApi'
 import { IPOKEMON_COLORS } from '~/constants/ConstPokemonColor'
 
 export async function mapPokemonToBaseItem(
