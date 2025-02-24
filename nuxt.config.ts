@@ -13,6 +13,10 @@ export default defineNuxtConfig({
     '@nuxt/content',
     '@nuxt/image',
   ],
+  imports: {
+    dirs: ['composables'],
+    global: true,
+  },
   ssr: true,
   css: ['~/assets/css/main.css'],
   ui: {

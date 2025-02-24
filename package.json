@@ -12,10 +12,12 @@
     "start:generate": "npx serve .output/public",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "typecheck": "vue-tsc --noEmit"
+    "typecheck": "vue-tsc --noEmit",
+    "test": "vitest"
   },
   "dependencies": {
-    "@pinia-plugin-persistedstate/nuxt": "^1.2.1"
+    "@pinia-plugin-persistedstate/nuxt": "^1.2.1",
+    "@pinia/testing": "^1.0.0"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^3.16.0",
@@ -24,22 +26,28 @@
     "@nuxt/devtools": "2.0.0-beta.2",
     "@nuxt/eslint": "^0.7.6",
     "@nuxt/image": "^1.9.0",
+    "@nuxt/test-utils": "^3.17.0",
     "@nuxt/ui": "^2.21.0",
     "@pinia/nuxt": "^0.9.0",
     "@tailwindcss/typography": "^0.5.16",
     "@vite-pwa/nuxt": "^0.10.6",
+    "@vitejs/plugin-vue": "^5.2.1",
+    "@vue/test-utils": "^2.4.6",
     "@vueuse/core": "^12.7.0",
     "@vueuse/nuxt": "^12.5.0",
     "consola": "^3.4.0",
     "eslint": "^9.20.0",
     "eslint-plugin-format": "^1.0.1",
+    "happy-dom": "^17.1.4",
     "nuxt": "^3.15.4",
     "nuxt-api-party": "^2.1.2",
     "pinia": "^2.3.1",
     "pinia-plugin-persistedstate": "^4.2.0",
+    "playwright-core": "^1.50.1",
     "pokenode-ts": "^1.20.0",
     "rickmortyapi": "^2.3.0",
     "typescript": "^5.7.3",
+    "vitest": "^3.0.6",
     "vue-tsc": "2.1.6"
   },
   "overrides": {

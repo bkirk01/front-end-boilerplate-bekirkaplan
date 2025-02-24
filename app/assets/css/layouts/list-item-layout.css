@@ -25,7 +25,7 @@
 }
 
 @media (max-width: 767px) {
-  .list-card { 
+  .list-card {
     @apply rounded-xl;
   }
   .list-item-container {

@@ -24,35 +24,35 @@ app/
 │   ├── composables/      # Composables for API fetching and logic
 │   │   ├── usePokemonApi.ts
 │   │   └── useRickAndMortyApi.ts
-│   ├── config/           # API configurations
+│   ├── config/           # API configurations for endpoints and settings
 │   │   ├── pokemonApi.ts
 │   │   └── rickMortyApi.ts
-│   ├── mappers/          # Mapping logic between API and UI
+│   ├── mappers/          # Mapping logic between API responses and UI models
 │   │   ├── pokemon.mapper.ts
 │   │   └── rickAndMorty.mapper.ts
-│   └── types/            # TypeScript types for API responses
+│   └── types/            # TypeScript definitions for API responses
 │       ├── character.types.ts
 │       ├── common.types.ts
 │       └── pokemon.types.ts
-│   └── index.ts
+│   └── index.ts          # API entry point
 │
-├── assets/               # Static assets (animations, css, icons)
+├── assets/               # Static assets such as animations, CSS, and icons
 │   ├── animations/
-│   ├── css/
-│   └── icons/
+│   ├── css/              # CSS stylesheets
+│   └── icons/            # Icon assets
 │
 ├── components/           # Reusable UI components
-│   ├── backgrounds/      # Background components
+│   ├── backgrounds/      # Background components for pages
 │   │   └── WallpaperBackground.vue
-│   ├── cards/            # Character and view cards
+│   ├── cards/            # Card components displaying character information
 │   │   ├── CharacterDetail.vue
 │   │   ├── GridCard.vue
 │   │   └── ListView.vue
-│   ├── navigation/       # Navigation components
+│   ├── navigation/       # Navigation-related components
 │   │   ├── MainNavigation.vue
 │   │   ├── SubNavigation.vue
 │   │   └── ViewToggle.vue
-│   └── ui/               # UI base components (buttons, overlays, pagination)
+│   └── ui/               # UI elements like buttons, alerts, and loaders
 │       ├── Alert.vue
 │       ├── Avatar.vue
 │       ├── Badge.vue
@@ -64,24 +64,25 @@ app/
 │       ├── LoadingOverlay.vue
 │       ├── Progress.vue
 │       └── ScrollToTop.vue
-│   └── DetailView.vue
+│   └── DetailView.vue    # Detail view component wrapper
 │
-├── composables/          # Store and route management
-│   ├── clientSide/
-│   ├── useAppStore.ts
-│   └── useRouteManager.ts
+├── composables/          # Application-wide composables for logic management
+│   ├── clientSide/       # Client-side specific composables
+│   │   └── useClientSideHandler.ts
+│   ├── useAppStore.ts    # Store access composable
+│   └── useRouteManager.ts# Route management composable
 │
-├── config/               # App configuration files
+├── config/               # Application configuration files
 │   ├── appConfig.ts
 │   ├── defaultConfig.ts
 │   ├── pokemonConfig.ts
 │   ├── pwa.ts
 │   └── rickMortyConfig.ts
 │
-├── constants/            # Constant values (e.g., color schemes)
+├── constants/            # Constant values and enums for the application
 │   └── index.ts
 │
-├── layouts/              # Application layout components
+├── layouts/              # Layout components providing page structure
 │   ├── CardLayout.vue
 │   ├── ContentContainer.vue
 │   ├── DetailLayout.vue
@@ -89,36 +90,36 @@ app/
 │   ├── MainLayout.vue
 │   └── PagesLayout.vue
 │
-├── pages/                # Application pages
-│   ├── pokemon/
+├── pages/                # Application pages for routing
+│   ├── pokemon/          # Pokémon-related pages
 │   │   ├── [id].vue      # Pokémon detail page
 │   │   └── index.vue     # Pokémon overview page
-│   └── rick-and-morty/
+│   └── rick-and-morty/   # Rick & Morty-related pages
 │       ├── [id].vue      # Rick & Morty detail page
 │       └── index.vue     # Rick & Morty overview page
 │   └── index.vue         # Main landing page
 │
 ├── server/               # Server-side logic (if applicable)
 │
-├── store/                # Pinia store configuration
+├── store/                # Pinia store configurations and state management
 │   └── view.ts
 │
-├── tests/                # Testing-related files
+├── tests/                # Unit and integration tests
 │
 ├── types/                # Global TypeScript definitions
 │   ├── common.ts
 │   ├── config.types.ts
 │   └── route.types.ts
 │
-├── plugins/              # Nuxt plugins
+├── plugins/              # Nuxt plugins integration
 │   └── pinia-plugin-persistedstate.ts
 │
-├── public/               # Static public assets
+├── public/               # Static public assets accessible from the root
 │
 ├── app.vue               # Root Vue component
-├── nuxt.config.ts        # Nuxt configuration
+├── nuxt.config.ts        # Nuxt application configuration
 ├── package.json          # Project dependencies and scripts
-├── tailwind.config.js    # TailwindCSS configuration
+├── tailwind.config.js    # TailwindCSS configuration file
 ├── tsconfig.json         # TypeScript configuration
 └── README.md             # Project documentation
 ```

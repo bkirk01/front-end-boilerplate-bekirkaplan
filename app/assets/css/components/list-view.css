@@ -1,23 +1,23 @@
 .title {
-    @apply text-xl font-bold text-gray-800 capitalize mb-2;
-  }
-  
-  .badges {
-    @apply flex flex-row gap-2 mb-3;
-  }
-  
-  .detail-item {
-    @apply flex items-center gap-2 text-sm text-gray-800;
-  }
-  
-  .detail-icon {
-    @apply w-4 h-4 text-gray-600;
-  }
-  
-  .details-button {
-    @apply flex items-center gap-2 text-sm font-medium text-white w-full h-full;
-  }
-  
-  .button-icon {
-    @apply w-4 h-4 transition-transform duration-300 group-hover:translate-x-1;
-  }
+  @apply text-xl font-bold text-gray-800 capitalize mb-2;
+}
+
+.badges {
+  @apply flex flex-row gap-2 mb-3;
+}
+
+.detail-item {
+  @apply flex items-center gap-2 text-sm text-gray-800;
+}
+
+.detail-icon {
+  @apply w-4 h-4 text-gray-600;
+}
+
+.details-button {
+  @apply flex items-center gap-2 text-sm font-medium text-white w-full h-full;
+}
+
+.button-icon {
+  @apply w-4 h-4 transition-transform duration-300 group-hover:translate-x-1;
+}

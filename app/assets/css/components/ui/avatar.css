@@ -1,0 +1,35 @@
+.avatar {
+  @apply flex items-center rounded-full overflow-hidden transition-transform duration-300 bg-white p-1 shadow-lg;
+}
+
+.avatar-image {
+  @apply w-full transition-all duration-500 hover:scale-110 rounded-full p-2;
+}
+
+/* Mobile sizes */
+.avatar-sm {
+  @apply w-16 h-16;
+}
+
+.avatar-md {
+  @apply w-20 h-20;
+}
+
+.avatar-lg {
+  @apply w-24 h-24;
+}
+
+/* Desktop sizes */
+@screen md {
+  .avatar-sm {
+    @apply w-24 h-24;
+  }
+
+  .avatar-md {
+    @apply w-32 h-32;
+  }
+
+  .avatar-lg {
+    @apply w-48 h-48;
+  }
+}
