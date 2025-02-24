@@ -6,30 +6,30 @@ import { DBadge } from '..'
 
 defineProps<{
   image: string
-  title: string
+  title?: string
   detailsLink: string
   badges?: { text: string, color: string }[]
   height?: string
 }>()
-
-const isClient = import.meta.client
 </script>
 
 <template>
-  <div v-if="isClient">
-    <NuxtLink :to="detailsLink" class="block">
-      <ListItemLayout>
-        <template #avatar>
-          <UiAvatar :image="image" :alt="title" size="sm" />
-        </template>
+  <ClientOnly>
+    <ListItemLayout>
+      <template #avatar>
+        <UiAvatar :image="image" :alt="title || 'unknown image'" size="sm" />
+      </template>
 
-        <template #content>
+      <template #content>
+        <slot name="title">
           <h3 class="title">
             {{ title }}
           </h3>
+        </slot>
+        <slot name="contentBody">
           <div class="badges">
             <div v-if="badges && badges.length > 0">
-              <DBadge v-for="badge in badges" :key="badge.text" class="w-20" :color="badge.color as TGenColorKeyTypes">
+              <DBadge v-for="badge in badges" :key="badge.text" class="w-20" :bg-color="badge.text" :color="badge.color as TGenColorKeyTypes">
                 {{ badge.text }}
               </DBadge>
             </div>
@@ -39,41 +39,21 @@ const isClient = import.meta.client
               </DBadge>
             </div>
           </div>
-        </template>
+        </slot>
+      </template>
 
-        <template #footer>
-          <div class="details-button">
+      <template #button>
+        <div class="details-button">
+          <NuxtLink :to="detailsLink" class="w-full h-full flex justify-center items-center px-6 rounded-r-full">
             <span>Details</span>
             <UIcon name="i-heroicons-arrow-right" class="button-icon" />
-          </div>
-        </template>
-      </ListItemLayout>
-    </NuxtLink>
-  </div>
+          </NuxtLink>
+        </div>
+      </template>
+    </ListItemLayout>
+  </ClientOnly>
 </template>
 
 <style scoped>
-.title {
-  @apply text-xl font-bold text-gray-800 capitalize mb-2;
-}
-
-.badges {
-  @apply flex flex-row gap-2 mb-3;
-}
-
-.detail-item {
-  @apply flex items-center gap-2 text-sm text-gray-800;
-}
-
-.detail-icon {
-  @apply w-4 h-4 text-gray-600;
-}
-
-.details-button {
-  @apply flex items-center gap-2 px-6 text-sm font-medium text-white;
-}
-
-.button-icon {
-  @apply w-4 h-4 transition-transform duration-300 group-hover:translate-x-1;
-}
+@import '../../assets/css/components/list-view.css';
 </style>

@@ -14,6 +14,7 @@ export default defineNuxtConfig({
     '@nuxt/image',
   ],
   ssr: true,
+  css: ['~/assets/css/main.css'],
   ui: {
     global: true,
   },

@@ -79,8 +79,6 @@ app/
 │   └── rickMortyConfig.ts
 │
 ├── constants/            # Constant values (e.g., color schemes)
-│   ├── ConstPokemonColor.ts
-│   ├── ConstRickMortyColor.ts
 │   └── index.ts
 │
 ├── layouts/              # Application layout components

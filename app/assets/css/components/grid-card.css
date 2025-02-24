@@ -1,0 +1,6 @@
+.grid-card-container {
+    @apply backdrop-blur-sm;
+}
+.title-container {
+    @apply relative px-4 sm:px-6 lg:px-8 pt-4 pb-20;
+}

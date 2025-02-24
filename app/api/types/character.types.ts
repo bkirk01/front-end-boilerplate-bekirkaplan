@@ -3,7 +3,7 @@ import type { TGenColorKeyTypes } from '~/types/common'
 
 export interface ICharacterBaseCardSpecifications extends ICBaseCardDetailItem {
   type: string
-  badges?: { text: string, color: TGenColorKeyTypes }[]
+  badges?: { text: string, color: TGenColorKeyTypes | string }[]
   height?: number
   weight?: number
 }

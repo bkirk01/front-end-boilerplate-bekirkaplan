@@ -1,5 +1,5 @@
 import type { ICharacterBaseCardSpecifications } from '../types/character.types'
-import { CRICK_MORTY_COLOR_TYPES } from '~/constants/ConstRickMortyColor'
+import { IGEN_CHARACTER_COLOR_TYPE_SCHEME } from '~/constants'
 
 export function mapCharacterToBaseItem(
   character: any,
@@ -11,7 +11,7 @@ export function mapCharacterToBaseItem(
 
   const badges = badgesObject?.map((type: any) => ({
     text: type.value,
-    color: CRICK_MORTY_COLOR_TYPES[type.color] || 'default',
+    color: IGEN_CHARACTER_COLOR_TYPE_SCHEME[type.color] || 'default',
   }))
 
   return {

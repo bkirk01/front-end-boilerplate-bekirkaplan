@@ -38,19 +38,33 @@ const toggleView = computed({
             <template v-if="toggleView === 'grid'">
               <div class="grid-container">
                 <CardsGridCard
-                  v-for="character in refMappedCharacters" :key="character.id" :image="character.image"
-                  :title="character.name" :badges="character.badges" :type="character.type"
-                  :details-link="`/rick-and-morty/${character.id}`"
+                  v-for="character in refMappedCharacters"
+                  :key="character.id"
+                  :image="character.image"
+                  :title="character.name"
+                  :badges="character.badges"
+                  :type="character.type"
+                  :details-link="{ to: `/rick-and-morty/${character.id}`, text: 'Detail' }"
                 />
               </div>
             </template>
             <template v-else>
               <div class="list-container">
                 <CardsListView
-                  v-for="character in refMappedCharacters" :key="character.id" :image="character.image"
-                  :title="character.name" :badges="character.badges" :type="character.type"
+                  v-for="character in refMappedCharacters"
+                  :key="character.id"
+                  :image="character.image"
+                  :title="character.name"
+                  :badges="character.badges"
+                  :type="character.type"
                   :details-link="`/rick-and-morty/${character.id}`"
-                />
+                >
+                  <template #title>
+                    <h3 class="font-bold py-2 px-4 mb-2 rounded-lg text-black bg-gray-600">
+                      {{ character.name }}
+                    </h3>
+                  </template>
+                </CardsListView>
               </div>
             </template>
           </div>
