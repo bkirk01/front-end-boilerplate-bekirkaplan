@@ -37,20 +37,58 @@ const toggleView = computed({
             <template v-if="toggleView === 'grid'">
               <div class="grid-container">
                 <CardsGridCard
-                  v-for="pokemon in refMappedPokemons" :key="pokemon.id" :image="pokemon.image"
-                  :title="pokemon.name" :badges="pokemon.badges" :type="pokemon.type"
-                  :details-link="`/pokemon/${pokemon.id}`"
-                />
+                  v-for="pokemon in refMappedPokemons"
+                  :key="pokemon.id"
+                  :image="pokemon.image"
+                  :badges="pokemon.badges"
+                  :type="pokemon.type"
+                  :details-link="{ to: `/pokemon/${pokemon.id}`, text: 'Detail' }"
+                  :title="pokemon.name"
+                >
+                  <template #avatar>
+                    <img class="bg-white opacity-85 p-2 rounded-md transition hover:animate-pulse duration-100" :src="pokemon.image" :alt="pokemon.name" loading="lazy" decoding="async">
+                  </template>
+                  <!-- Example usage of templates for CardsGridCard conponent -->
+                  <!--
+                  <template #title>
+                    {{ pokemon.name }}
+                  </template>
+                  <template #avatar>
+                    <img :src="pokemon.image" :alt="pokemon.name" loading="lazy" decoding="async">
+                  </template>
+                  <template #content>
+                    Content
+                  </template>
+                  <template #footer>
+                    Footer
+                  </template>
+                  -->
+                </CardsGridCard>
               </div>
             </template>
 
             <template v-else>
               <div class="list-container">
                 <CardsListView
-                  v-for="pokemon in refMappedPokemons" :key="pokemon.id" :image="pokemon.image"
-                  :title="pokemon.name" :badges="pokemon.badges" :type="pokemon.type"
+                  v-for="pokemon in refMappedPokemons"
+                  :key="pokemon.id"
+                  :image="pokemon.image"
+                  :badges="pokemon.badges"
+                  :type="pokemon.type"
                   :details-link="`/pokemon/${pokemon.id}`"
-                />
+                >
+                  <template #title>
+                    <h3 class="font-bold py-2 px-4 mb-2 rounded-lg text-black bg-white">
+                      {{ pokemon.name }}
+                    </h3>
+                  </template>
+                  <!-- Example slot usages for CardListView component -->
+                  <!--
+                  <template #contentBody>
+                    Body
+                  </template>
+                  -->
+                </CardsListView>
               </div>
             </template>
           </div>

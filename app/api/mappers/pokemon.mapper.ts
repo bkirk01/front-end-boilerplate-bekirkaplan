@@ -2,7 +2,7 @@ import type { NamedAPIResource, Pokemon } from 'pokenode-ts'
 import type { ICBaseCardDetailItem } from '~/api/types/common.types'
 import type { IPokemonBaseCardSpecifications } from '~/api/types/pokemon.types'
 import { apiPokemonClient } from '~/api/config/pokemonApi'
-import { IPOKEMON_COLORS } from '~/constants/ConstPokemonColor'
+import { IGEN_CHARACTER_COLOR_TYPE_SCHEME } from '~/constants'
 
 export async function mapPokemonToBaseItem(
   pokemon: NamedAPIResource,
@@ -12,7 +12,7 @@ export async function mapPokemonToBaseItem(
 
   const badges = details?.types?.map((type: any) => ({
     text: type.type.name,
-    color: IPOKEMON_COLORS[type.type.name] || 'default',
+    color: IGEN_CHARACTER_COLOR_TYPE_SCHEME[type.type.name] || 'default',
   }))
 
   return {
@@ -37,7 +37,7 @@ export function mapPokemonToDetailItem(pokemon: any): ICBaseCardDetailItem {
       || pokemon.sprites?.front_default,
     badges: pokemon.types.map((type: any) => ({
       text: type.type.name,
-      color: IPOKEMON_COLORS[type.type.name] || 'gray',
+      color: IGEN_CHARACTER_COLOR_TYPE_SCHEME[type.type.name] || 'gray',
     })),
     info: [
       { label: 'Height', value: `${(pokemon.height || 0) / 10} m` },
@@ -47,7 +47,7 @@ export function mapPokemonToDetailItem(pokemon: any): ICBaseCardDetailItem {
       name: stat.stat.name,
       value: stat.base_stat,
       max: 255,
-      color: IPOKEMON_COLORS[primaryType] || 'gray',
+      color: IGEN_CHARACTER_COLOR_TYPE_SCHEME[primaryType] || 'gray',
     })),
     list: {
       title: 'Abilities',

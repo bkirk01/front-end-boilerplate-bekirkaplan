@@ -4,24 +4,47 @@ export const ConstAppName = 'Rick & Morty and Pokémon'
 export const ConstAppDescription
   = 'Explore characters from Rick & Morty and discover Pokémon species, their types, abilities, and stats.'
 
-export const IGEN_BADGE_COLOR_SCHEME: Record<TGenColorKeyTypes, string> = {
-  gray: 'bg-gray-50/80 text-gray-800 ring-gray-500/20',
-  red: 'bg-red-50/80 text-red-800 ring-red-500/20',
-  yellow: 'bg-yellow-50/80 text-yellow-800 ring-yellow-500/20',
-  green: 'bg-green-50/80 text-green-800 ring-green-500/20',
-  blue: 'bg-blue-50/80 text-blue-800 ring-blue-500/20',
-  indigo: 'bg-indigo-50/80 text-indigo-800 ring-indigo-500/20',
-  purple: 'bg-purple-50/80 text-purple-800 ring-purple-500/20',
-  pink: 'bg-pink-50/80 text-pink-800 ring-pink-500/20',
-  orange: 'bg-orange-50/80 text-orange-800 ring-orange-500/20',
-  amber: 'bg-amber-50/80 text-amber-800 ring-amber-500/20',
-  lime: 'bg-lime-50/80 text-lime-800 ring-lime-500/20',
-  sky: 'bg-sky-50/80 text-sky-800 ring-sky-500/20',
-  violet: 'bg-violet-50/80 text-violet-800 ring-violet-500/20',
-  rose: 'bg-rose-50/80 text-rose-800 ring-rose-500/20',
-  slate: 'bg-slate-50/80 text-slate-800 ring-slate-500/20',
-  zinc: 'bg-zinc-50/80 text-zinc-800 ring-zinc-500/20',
-  stone: 'bg-stone-50/80 text-stone-800 ring-stone-500/20',
-  fuchsia: 'bg-fuchsia-50/80 text-fuchsia-800 ring-fuchsia-500/20',
-  default: 'bg-gray-200/80 text-gray-800 ring-gray-300/40',
+export const IGEN_CHARACTER_COLOR_TYPE_SCHEME: Record<string, string> = {
+  normal: 'gray',
+  fire: 'red',
+  water: 'blue',
+  electric: 'yellow',
+  grass: 'green',
+  ice: 'sky',
+  fighting: 'orange',
+  poison: 'purple',
+  ground: 'amber',
+  flying: 'indigo',
+  psychic: 'pink',
+  bug: 'stone',
+  rock: 'zinc',
+  ghost: 'violet',
+  dragon: 'rose',
+  dark: 'slate',
+  steel: 'zinc',
+  fairy: 'fuchsia',
+  alive: 'green',
+  dead: 'red',
+  unknown: 'default',
+}
+
+export const IGEN_COLOR_SCHEME: Record<string | TGenColorKeyTypes, string> = {
+  gray: 'text-gray-600 bg-gray-200 border-gray-300', // normal
+  red: 'text-red-600 bg-red-400 border-red-500', // fire, dead
+  blue: 'text-blue-600 bg-blue-400 border-blue-500', // water
+  yellow: 'text-yellow-600 bg-yellow-300 border-yellow-400', // electric
+  green: 'text-green-600 bg-green-400 border-green-500', // grass, alive
+  sky: 'text-sky-600 bg-sky-300 border-sky-400', // ice
+  orange: 'text-orange-600 bg-orange-400 border-orange-500', // fighting
+  purple: 'text-purple-600 bg-purple-400 border-purple-500', // poison
+  amber: 'text-amber-600 bg-amber-400 border-amber-500', // ground
+  indigo: 'text-indigo-600 bg-indigo-400 border-indigo-500', // flying
+  pink: 'text-pink-600 bg-pink-400 border-pink-500', // psychic
+  stone: 'text-neutral-600 bg-neutral-400 border-neutral-500', // bug (brown hue)
+  zinc: 'text-zinc-600 bg-zinc-400 border-zinc-500', // rock, steel
+  violet: 'text-violet-600 bg-violet-400 border-violet-500', // ghost
+  rose: 'text-rose-600 bg-rose-400 border-rose-500', // dragon
+  slate: 'text-slate-600 bg-slate-400 border-slate-500', // dark
+  fuchsia: 'text-fuchsia-600 bg-fuchsia-400 border-fuchsia-500', // fairy
+  default: 'text-gray-500 bg-gray-100 border-gray-300', // unknown
 }

@@ -9,6 +9,17 @@ module.exports = {
     './nuxt.config.{js,ts}',
     './app.vue',
   ],
+  safelist: [
+    {
+      pattern: /from-(.*)/,
+    },
+    {
+      pattern: /to-(.*)/,
+    },
+    {
+      pattern: /bg-gradient-to-(.*)/,
+    },
+  ],
   theme: {
     extend: {
       colors: {

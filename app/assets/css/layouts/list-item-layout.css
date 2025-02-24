@@ -1,11 +1,11 @@
-.list-item-container {
-  @apply list-card transform transition-transform duration-300 hover:scale-[1.01];
-}
-
 .list-card {
   @apply overflow-hidden backdrop-blur-sm
   shadow-sm hover:shadow-lg transform hover:scale-[1.02]
   transition-all duration-300 rounded-full;
+}
+
+.list-item-container {
+  @apply list-card transform transition-transform duration-300 hover:scale-[1.01] bg-gray-900;
 }
 
 .image-container {
@@ -16,6 +16,25 @@
   @apply flex-1 p-4;
 }
 
+.flex-container {
+  @apply flex;
+}
+
 .button-container {
   @apply hidden md:flex items-center justify-center border-l border-white/30 backdrop-blur-sm;
+}
+
+@media (max-width: 767px) {
+  .list-card { 
+    @apply rounded-xl;
+  }
+  .list-item-container {
+    @apply mx-4;
+  }
+  .flex-container {
+    @apply flex flex-col;
+  }
+  .button-container {
+    @apply block items-center justify-center backdrop-blur-none bg-white/10 p-1 py-4 rounded-b-lg;
+  }
 }
