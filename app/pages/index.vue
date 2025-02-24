@@ -14,7 +14,7 @@
                 Rick & Morty Characters
               </h2>
             </div>
-            <img src="~/assets/icons/rick.jpeg" alt="Rick" class="header-image">
+            <img src="../assets/icons/rick.jpeg" alt="Rick" class="header-image">
           </div>
           <div class="card-content">
             <p class="card-description">
@@ -37,7 +37,7 @@
                 Pokémon
               </h2>
             </div>
-            <img src="~/assets/icons/pikacu.png" alt="Pikachu" class="header-image">
+            <img src="../assets/icons/pikacu.png" alt="Pikachu" class="header-image">
           </div>
           <div class="card-content">
             <p class="card-description">
